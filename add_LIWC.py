@@ -12,15 +12,18 @@ for line in liwc_file:
   male = features[len(features)-2]
   female = features[len(features)-3]
   speaker = male if 'True' in gender else female
-  feature_map[speaker] = features[0:len(features)-3]
+  other = female if 'True' in gender else male
+  if speaker not in feature_map:
+    feature_map[speaker] = {}
+  feature_map[speaker][other] = features[0:len(features)-3]
   
 for line in feature_file:
   if 'selfid' in line:
     output_file.write(line)
     continue
   features = line.split(';')
-  if features[0] in feature_map:
-    output = features + feature_map[features[0]][0:n]
+  if features[0] in feature_map and features[1] in feature_map[features[0]]:
+    output = features + feature_map[features[0]][features[1]][0:n]
   else:
     output = features + ([0] * n)
     print str(features[0]) + ' is not in liwc'
