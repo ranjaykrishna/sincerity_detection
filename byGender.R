@@ -78,8 +78,12 @@ plotnScree(nS)
 
 
 
-#Create Data Frame for Prosodic Prediction
-tot_dat = cbind(dat$maleBool, dat[,9:22], dat[, 440:471], other_features[, 413:444])
+# Create Data Frame for Prosodic Prediction
+#tot_dat = cbind(dat$maleBool, dat[,9:22], dat[, 440:471], other_features[, 413:444])
+
+# Create Data Frame for Lexical Prediction
+tot_dat = cbind(dat$maleBool, dat[,9:22], dat[, 411:ncol(dat)], other_features[, 446:ncol(other_features)])
+
 tot_dat <- tot_dat[complete.cases(tot_dat),]
 factors = tot_dat[, 16:ncol(tot_dat)]
 #factors = scale(factors, center = TRUE, scale = TRUE)
@@ -90,7 +94,9 @@ female_dat = tot_dat[tot_dat[, 1] == 0,]
 male_factors = factors[tot_dat[, 1] == 1,]
 female_factors = factors[tot_dat[, 1] == 0,]
 
-cur_dat = scale(female_dat, center = TRUE, scale = TRUE)
+cur_dat = female_dat
+#cur_dat = scale(female_dat, center = TRUE, scale = TRUE)
+#cur_dat <- cur_dat[complete.cases(cur_dat),]
 cur_factors = female_factors
 cur_factors = scale(cur_factors, center = TRUE, scale = TRUE)
 library(e1071)
