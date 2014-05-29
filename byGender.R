@@ -82,7 +82,7 @@ plotnScree(nS)
 #tot_dat = cbind(dat$maleBool, dat[,9:22], dat[, 440:471], other_features[, 413:444])
 
 # Create Data Frame for Lexical Prediction
-tot_dat = cbind(dat$maleBool, dat[,9:22], dat[, 411:ncol(dat)], other_features[, 446:ncol(other_features)])
+tot_dat = cbind(dat$maleBool, dat[,9:22], dat[, 411:439], dat[, 472:ncol(dat)], other_features[, 446:ncol(other_features)])
 
 tot_dat <- tot_dat[complete.cases(tot_dat),]
 factors = tot_dat[, 16:ncol(tot_dat)]
@@ -95,10 +95,20 @@ male_factors = factors[tot_dat[, 1] == 1,]
 female_factors = factors[tot_dat[, 1] == 0,]
 
 cur_dat = female_dat
-#cur_dat = scale(female_dat, center = TRUE, scale = TRUE)
-#cur_dat <- cur_dat[complete.cases(cur_dat),]
+cur_dat = scale(female_dat, center = TRUE, scale = TRUE)
+cur_dat <- cur_dat[complete.cases(cur_dat),]
 cur_factors = female_factors
 cur_factors = scale(cur_factors, center = TRUE, scale = TRUE)
+cur_factors = (cur_factors[, complete.cases(t(as.matrix(cur_factors)))])
+# Removing columns for Lexical Features
+for(i in 1:nrow(cur_factors)){
+  na_index = which(is.na(cur_factors[,i]))
+  if (length(na_index) > 0) {
+    print(i)
+  }
+}
+
+
 library(e1071)
 library(ada)
 final_scores <- matrix(rep(0, 14 * 3), nrow = 14)
