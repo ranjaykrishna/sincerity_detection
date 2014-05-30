@@ -76,13 +76,22 @@ ap <- parallel(subject=nrow(fa_data),var=ncol(fa_data),rep=100,cent=.05)
 nS <- nScree(x=ev$values, aparallel=ap$eigen$qevpea)
 plotnScree(nS)
 
+###########################################
+# Lex Analysis
+male_feats <- dat[dat$maleBool == 0, ]
+lex_feats <- cbind(male_feats[,9:22], male_feats[, 411:439], male_feats[, 472:ncol(dat)])
+fa_data = scale(lex_feats, center = TRUE, scale = TRUE)
+fa_data = (fa_data[, complete.cases(t(as.matrix(fa_data)))])
 
-
+##########################################################################################
 # Create Data Frame for Prosodic Prediction
 #tot_dat = cbind(dat$maleBool, dat[,9:22], dat[, 440:471], other_features[, 413:444])
 
 # Create Data Frame for Lexical Prediction
-tot_dat = cbind(dat$maleBool, dat[,9:22], dat[, 411:439], dat[, 472:ncol(dat)], other_features[, 446:ncol(other_features)])
+#tot_dat = cbind(dat$maleBool, dat[,9:22], dat[, 411:439], dat[, 472:ncol(dat)], other_features[, 446:ncol(other_features)])
+
+# Create Data Frame for Lexical & Prosodic Prediction
+tot_dat = cbind(dat$maleBool, dat[,9:22], dat[, 411:ncol(dat)], other_features[, 413:444], other_features[, 446:ncol(other_features)])
 
 tot_dat <- tot_dat[complete.cases(tot_dat),]
 factors = tot_dat[, 16:ncol(tot_dat)]
@@ -94,27 +103,20 @@ female_dat = tot_dat[tot_dat[, 1] == 0,]
 male_factors = factors[tot_dat[, 1] == 1,]
 female_factors = factors[tot_dat[, 1] == 0,]
 
-cur_dat = female_dat
+cur_dat = male_dat
 cur_dat = scale(female_dat, center = TRUE, scale = TRUE)
-cur_dat <- cur_dat[complete.cases(cur_dat),]
-cur_factors = female_factors
+cur_dat = (cur_dat[, complete.cases(t(as.matrix(cur_dat)))])
+cur_factors = male_factors
 cur_factors = scale(cur_factors, center = TRUE, scale = TRUE)
 cur_factors = (cur_factors[, complete.cases(t(as.matrix(cur_factors)))])
-# Removing columns for Lexical Features
-for(i in 1:nrow(cur_factors)){
-  na_index = which(is.na(cur_factors[,i]))
-  if (length(na_index) > 0) {
-    print(i)
-  }
-}
 
 
 library(e1071)
 library(ada)
-final_scores <- matrix(rep(0, 14 * 3), nrow = 14)
-rownames(final_scores) <- colnames(cur_dat)[2:15]
-colnames(final_scores) <- c("SVM_RBF", "SVM_Linear", "AdaBoost") 
-for(col in 2:15){ #Iterate through output columns
+final_scores <- matrix(rep(0, 14 * 4), nrow = 14)
+rownames(final_scores) <- colnames(cur_dat)[1:14]
+colnames(final_scores) <- c("SVM_RBF", "SVM_Linear", "AdaBoost", "LibliearR_with_L1") 
+for(col in 1:14){ #Iterate through output columns
   print(paste("Label: ", colnames(cur_dat)[col]))
   gt_sinc <- cur_dat[, col] #Get right col
   q_sinc <- quantile(gt_sinc, probs = seq(0, 1, 0.1))
@@ -125,7 +127,7 @@ for(col in 2:15){ #Iterate through output columns
   split_factors <- cur_factors[c(ones, zeros), ]
   #split  actors <- scale(split_factors, center = TRUE, scale = TRUE) #Center and scale to unit-variance
   outcome = as.factor(gt)
-  scores = matrix(rep(0, 10 * 3), nrow = 10) #3 is number of methods
+  scores = matrix(rep(0, 10 * 4), nrow = 10) #4 is number of methods
   for(iter in 1:10){ #Do 5-fold CV 10 times
     print(paste("Iteration: ", toString(iter)))
     k = 5
@@ -137,6 +139,7 @@ for(col in 2:15){ #Iterate through output columns
     accs_ada <- rep(0, k)
     accs_svm_rbf <- rep(0, k)
     accs_svm_linear <- rep(0, k)
+    accs_liblineaR <- rep(0, k)
     for(i in 1:k){
       #print(paste(toString(i), '...'))
       sample_rows_start = (i - 1) * per_sample + 1  
@@ -147,10 +150,12 @@ for(col in 2:15){ #Iterate through output columns
       predict_test = split_factors[sample_rows,]
       outcome_train = outcome[-sample_rows]
       outcome_test = outcome[sample_rows]
+      
       #SVM with radial kernel
       svm.mod <- svm(predict_train, outcome_train, kernel = 'radial')
       test_pred <- predict(svm.mod, predict_test)
       accs_svm_rbf[i] = sum(test_pred == outcome_test)/length(outcome_test)
+      
       #rf <- randomForest(predict_train, y = outcome_train, xtest = predict_test, ytest = outcome_test, ntree = 500, importance = TRUE)
       ada.mod <- ada(predict_train, outcome_train, test.x = predict_test, test.y = outcome_test)
       accs_ada[i] = sum(predict(ada.mod, data.frame(predict_test)) == outcome_test)/length(outcome_test)
@@ -158,14 +163,19 @@ for(col in 2:15){ #Iterate through output columns
       svm.mod.lin <- svm(predict_train, outcome_train, kernel = 'linear')
       test_pred <- predict(svm.mod.lin, predict_test)
       accs_svm_linear[i] = sum(test_pred == outcome_test)/length(outcome_test)
+      
+      lin=LiblineaR(data=predict_train,labels=outcome_train,type=6,cost=heuristicC(predict_train),bias=TRUE,verbose=FALSE)
+      test_pred <- predict(lin, predict_test)
+      accs_liblineaR[i] = sum(test_pred == outcome_test)/length(outcome_test)
     }
     scores[iter, 1] = mean(accs_svm_rbf)
     scores[iter, 2] = mean(accs_svm_linear)
     scores[iter, 3] = mean(accs_ada)
+    scores[iter, 4] = mean(accs_liblineaR)
   }
   final_scores[col - 1,] = apply(scores, 2, mean) #-1 is to make 1-index
 }
-write.table(final_scores, 'Performance/BothFullPredictorsFem.csv', sep = ';')
+write.table(final_scores, 'BothFullPredictorsMale.csv', sep = ';')
 
 
 
