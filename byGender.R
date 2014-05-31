@@ -1,6 +1,7 @@
 #setwd("/home/sidd/Documents/CS224s/Analysis");
 #setwd("~/CS 224S/Final Project/Analysis");
-dat <- read.table('all_features.csv', sep = ';', header = TRUE, na.strings = c('NA', ' . ', ' .','. '))
+setwd('~/Documents/workspace/sincerity/sincerity_detection')
+dat <- read.table('all_new_features.csv', sep = ';', header = TRUE, na.strings = c('NA', ' . ', ' .','. '))
 dat <- dat[, c(437, 1:436, 438:ncol(dat))] #Reorder so maleBool near beginning
 dat$maleBool = as.numeric(dat$maleBool) #Get numeric malebool
 #Create Features for Other Speaker
@@ -113,10 +114,11 @@ cur_factors = (cur_factors[, complete.cases(t(as.matrix(cur_factors)))])
 
 library(e1071)
 library(ada)
+library(LiblineaR)
 final_scores <- matrix(rep(0, 14 * 4), nrow = 14)
 rownames(final_scores) <- colnames(cur_dat)[1:14]
 colnames(final_scores) <- c("SVM_RBF", "SVM_Linear", "AdaBoost", "LibliearR_with_L1") 
-for(col in 1:14){ #Iterate through output columns
+for(col in 2:15){ #Iterate through output columns
   print(paste("Label: ", colnames(cur_dat)[col]))
   gt_sinc <- cur_dat[, col] #Get right col
   q_sinc <- quantile(gt_sinc, probs = seq(0, 1, 0.1))
@@ -157,7 +159,8 @@ for(col in 1:14){ #Iterate through output columns
       accs_svm_rbf[i] = sum(test_pred == outcome_test)/length(outcome_test)
       
       #rf <- randomForest(predict_train, y = outcome_train, xtest = predict_test, ytest = outcome_test, ntree = 500, importance = TRUE)
-      ada.mod <- ada(predict_train, outcome_train, test.x = predict_test, test.y = outcome_test)
+      control <- rpart.control(cp = -1, maxdepth = 14,maxcompete = 1,xval = 0)
+      ada.mod <- ada(predict_train, outcome_train, test.x = predict_test, test.y = outcome_test, control=control)
       accs_ada[i] = sum(predict(ada.mod, data.frame(predict_test)) == outcome_test)/length(outcome_test)
       
       svm.mod.lin <- svm(predict_train, outcome_train, kernel = 'linear')
@@ -166,7 +169,7 @@ for(col in 1:14){ #Iterate through output columns
       
       lin=LiblineaR(data=predict_train,labels=outcome_train,type=6,cost=heuristicC(predict_train),bias=TRUE,verbose=FALSE)
       test_pred <- predict(lin, predict_test)
-      accs_liblineaR[i] = sum(test_pred == outcome_test)/length(outcome_test)
+      accs_liblineaR[i] = sum(as.integer(unlist(test_pred)) == outcome_test)/length(outcome_test)
     }
     scores[iter, 1] = mean(accs_svm_rbf)
     scores[iter, 2] = mean(accs_svm_linear)
@@ -175,10 +178,5 @@ for(col in 1:14){ #Iterate through output columns
   }
   final_scores[col - 1,] = apply(scores, 2, mean) #-1 is to make 1-index
 }
-write.table(final_scores, 'BothFullPredictorsMale.csv', sep = ';')
+write.table(final_scores, 'male_all_new_results.csv', sep = ';')
 
-
-
-
-#Do Predictions for Males
-male_dat <- dat[dat$maleBool == 1,]
