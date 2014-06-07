@@ -105,8 +105,8 @@ male_factors = factors[tot_dat[, 1] == 1,]
 female_factors = factors[tot_dat[, 1] == 0,]
 
 cur_dat = male_dat
-cur_dat = scale(female_dat, center = TRUE, scale = TRUE)
-cur_dat = (cur_dat[, complete.cases(t(as.matrix(cur_dat)))])
+#cur_dat = scale(cur_dat, center = TRUE, scale = TRUE)
+#cur_dat = (cur_dat[, complete.cases(t(as.matrix(cur_dat)))])
 cur_factors = male_factors
 cur_factors = scale(cur_factors, center = TRUE, scale = TRUE)
 cur_factors = (cur_factors[, complete.cases(t(as.matrix(cur_factors)))])
