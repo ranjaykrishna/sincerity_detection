@@ -36,6 +36,13 @@ Computationally understanding the perception of a speaker's characteristics is a
 %
 
 \section{Introduction}
+Efforts in linguistic understanding encounter inevitable difficulties whether the interpretative entity is a human or a machine. For example, any communicative exchange across agents runs the risk of misrepresentation of one's self or of their interlocutor. It has been shown that given a dialogue between just two agents, human judgments about each other can be subject to great discrepancies (R. Ranganath et al. 2009), and this is potentially due to a failure in recognizing each other's affective cues. 
+To face this issue, it is useful to invoke the notion of \textit{interpersonal stances}, as described by Schaerer (2000, 2003). An interpersonal stance is the way in which interlocutors pose themselves with respect to other agents within a given exchange. In particular, this notion incorporates affective stances, such as flirtatiousness, awkwardness, or courteousness, whose expression can be detected via subtle cues from a speaker's voice or words. This observation leads to the definition of two sets of communicative features: prosodic, pertaining to the physical characteristics of the vocal signal, and lexical, pertaining to the semantic content of the words pronounced. 
+
+Examples of prosodic features are the fundamental frequency contour, or pitch, of a given speaker's voice, or the mean intensity they use to convey a particular emotive state (anger, excitement, humor). On the other hand, the number of times a given word is repeated, either throughout an entire conversation or only in response to a preceding speech segment, are considered lexical features. 
+Thanks to the detailed and insightful research conducted by R. Ranganath et al. (2013), it has been possible to extract both sets of features from a series of speed date encounters, which were recorded and transcribed. Despite the relative artificiality of conversations within this particular context, this very artificiality can be favorable in an empirical study: it poses constraints on how much time interlocutors have to establish an exchange, and also generates very specific interpersonal stances (listed in the following sections), all of which are relevant to the date being either a success of a failure. By applying NLP classification methods to the extracted feature sets, it is possible to generate a fairly accurate predictor of whether, given a pair of interlocutors, one of the two found the other to be flirtatious, intelligent, etc. and vice versa. 
+
+We build our own models upon the previously conducted research on the same dataset, and apply the same techniques in order to detect stances such as courteousness, sincerity, and humor.  
 
 \section{Related Works}
 
@@ -88,9 +95,15 @@ We start by using an SVM with a linear kernel. To improve our classifications, w
 
 \section{Analysis}
 
+\subsection{Adaboost Weights}
+By limiting the depth of the trees in Adaboost to 1, we are able to extract the decision boundaries
 
 \section{Future Work}
+The model we use has a lot of features and reducing dimensionality of this data by learning hidden variables from an sparse auto-encoder might give us more insight into how we can create a shared representation of the lexical with the prosodic features.
 
+The SpeedDate dataset we use also contains ratings of people's intelligence, sincerity and other characteristics. An interesting area to explore would find correlations between these characteristics and their corresponding prosodic and lexical features.
+
+Adding another source of features, such as video from video speed dates is another extension to this project. It would be insightful to see how the contribution of the current features will change if visual features are also added.
 
 \section{Conclusions}
 
