@@ -99,6 +99,7 @@ liwc_lex_comb = liwc_lex_dat[liwc_lex_reorder,]
 #Testing
 #cbind(praat_dat[, 1:2], liwc_lex_comb[, (ncol(liwc_lex_comb) - 2):ncol(liwc_lex_comb)])
 praat_liwc_lex = cbind(praat_dat, liwc_lex_comb[, 1:(ncol(liwc_lex_comb) - 3)])
+
 acc_dat <- read.table('final_acc_feats.csv', sep = ',', header = FALSE)
 colnames(acc_dat) <- c('RateAcc', 'ContAcc', 'LaughAcc', 'FuncAcc', 'Male', 'Female', 'MaleBool')
 acc_dat$MaleBool = (acc_dat$MaleBool == 'True')
@@ -146,4 +147,4 @@ lab_comb = lab_dat[lab_reorder,]
 #Complete Data Set
 tot_dat <- cbind(lab_comb, praat_liwc_lex_acc[, 3:ncol(praat_liwc_lex_acc)])
 
-write.table(tot_dat, '')
+write.table(tot_dat, 'final_features.csv', sep = ';', col.names = TRUE, row.names = FALSE)
