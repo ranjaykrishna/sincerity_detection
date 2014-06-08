@@ -1,41 +1,47 @@
-setwd("/home/sidd/Documents/CS224s/Analysis");
+NUM_NON_PREDICTORS = 24
+PROS_COLS = 25:58
+
+setwd("/home/sidd/Documents/CS224s/Analysis/Data");
 #setwd("~/CS 224S/Final Project/Analysis");
 #setwd('~/Documents/workspace/sincerity/sincerity_detection')
-dat <- read.table('all_new_features.csv', sep = ';', header = TRUE, na.strings = c('NA', ' . ', ' .','. '))
-dat <- dat[, c(437, 1:436, 438:ncol(dat))] #Reorder so maleBool near beginning
-dat$maleBool = as.numeric(dat$maleBool) #Get numeric malebool
+dat <- read.table('final_features.csv', sep = ';', header = TRUE, na.strings = c('NA', ' . ', ' .','. '))
+#dat <- dat[, c(437, 1:436, 438:ncol(dat))] #Reorder so maleBool near beginning
+#dat$maleBool = as.numeric(dat$maleBool) #Get numeric malebool
 
 #Sparse PCA
-library(elasticnet)
-male_dat <- dat[dat$maleBool == 1,]
-tot_pros <- male_dat[, 27:218]
-tot_pros <- tot_pros[complete.cases(tot_pros),]
-tot_pros <- scale(tot_pros, scale = TRUE, center = TRUE)
-tot_pros <- tot_pros[, complete.cases(t(as.matrix(tot_pros)))]
-sp.pca <- spca(tot_pros, K = 10, type = 'predictor',  para = rep(20, 10), sparse = 'varnum')
-sp.pca.loads = sp.pca$loadings
+if(FALSE){
+  library(elasticnet)
+  male_dat <- dat[dat$maleBool == 1,]
+  tot_pros <- male_dat[, 27:218]
+  tot_pros <- tot_pros[complete.cases(tot_pros),]
+  tot_pros <- scale(tot_pros, scale = TRUE, center = TRUE)
+  tot_pros <- tot_pros[, complete.cases(t(as.matrix(tot_pros)))]
+  sp.pca <- spca(tot_pros, K = 10, type = 'predictor',  para = rep(20, 10), sparse = 'varnum')
+  sp.pca.loads = sp.pca$loadings  
+}
 
 #Create Features for Other Speaker
-n_features = ncol(dat) - 26 #26 non-predictor features 
+n_features = ncol(dat) - NUM_NON_PREDICTORS 
 other_features = data.frame(matrix(rep(0, nrow(dat) * n_features), ncol = n_features))
 for(i in 1:nrow(dat)){
   self = dat$selfid[i]
   other = dat$otherid[i]
   corres_row = which(dat$selfid == other & dat$otherid == self)
   if(length(corres_row) > 0){
-    other_features[i,] = as.vector(dat[corres_row, (27:ncol(dat))])
+    other_features[i,] = as.vector(dat[corres_row, ((NUM_NON_PREDICTORS  + 1):ncol(dat))])
   } else {
     other_features[i,] = rep(NA, n_features)
   }
 }
-names(other_features) <- paste("Other", names(dat)[27:ncol(dat)], sep = '.')
+names(other_features) <- paste("Other", names(dat)[(NUM_NON_PREDICTORS + 1):ncol(dat)], sep = '.')
 
 #Get prosodic features of male speakers to determine factor analysis for males
-male_dat <-  dat[dat$maleBool == 1, ]
+male_dat <-  dat[dat$selfid < dat$otherid, ]
+female_dat <- dat[dat$otherid > dat$selfid, ]
 
 #Get Prosodic Factors for Males
 #male_pros <- male_dat[, c(195, 196, 200, 204, (440:471))]  
-male_pros <- male_dat[,(440:471)]  
+male_pros <- male_dat[,PROS_COLS]
 j_columns = c("tndur.Mean", 'tndur.SD', 'pmin.Mean', 'pmin.SD', 'pmax.Mean', 'pmax.SD', 'pmean.Mean', 'pmean.SD', 'psd.Mean', 'psd.SD', 'imin.Mean', 'imin.SD', 'imax.Mean', 'imax.SD', 'imean.Mean', 'imean.SD', 'voiceProb_sma_min', 'voiceProb_sma_amean', 'voiceProb_sma_max', 'voiceProb_sma_stddev')
 male_pros <- male_pros[, which(colnames(male_pros) %in% j_columns)]
 
@@ -58,8 +64,8 @@ fa_vals_male = as.matrix(fa_data) %*% l_male
 
 
 #Get prosodic factors for Females fem_dat <- dat[dat$maleBool == 0,]
-fem_dat <- dat[dat$maleBool == 0,]
-fem_pros <- fem_dat[,(440:471)]  
+fem_dat <- dat[dat$selfid > dat$otherid,]
+fem_pros <- fem_dat[,PROS_COLS]  
 j_columns = c("tndur.Mean", 'tndur.SD', 'pmin.Mean', 'pmin.SD', 'pmax.Mean', 'pmax.SD', 'pmean.Mean', 'pmean.SD', 'psd.Mean', 'psd.SD', 'imin.Mean', 'imin.SD', 'imax.Mean', 'imax.SD', 'imean.Mean', 'imean.SD', 'voiceProb_sma_min', 'voiceProb_sma_amean', 'voiceProb_sma_max', 'voiceProb_sma_stddev')
 fem_pros <- fem_pros[, which(colnames(fem_pros) %in% j_columns)]
 
@@ -84,7 +90,7 @@ fa_vals_fem = fa_data %*% l_fem
 #rownames(fem_lambda) = colnames(fa_data)
 
 #Get Factors for Pooled
-pros <- dat[, (440:471)]
+pros <- dat[, (PROS_COLS)]
 j_columns = c("tndur.Mean", 'tndur.SD', 'pmin.Mean', 'pmin.SD', 'pmax.Mean', 'pmax.SD', 'pmean.Mean', 'pmean.SD', 'psd.Mean', 'psd.SD', 'imin.Mean', 'imin.SD', 'imax.Mean', 'imax.SD', 'imean.Mean', 'imean.SD', 'voiceProb_sma_min', 'voiceProb_sma_amean', 'voiceProb_sma_max', 'voiceProb_sma_stddev')
 pros <- pros[, which(colnames(pros) %in% j_columns)]
 fa_data = pros[complete.cases(pros),]
@@ -96,6 +102,8 @@ ap <- parallel(subject=nrow(fa_data),var=ncol(fa_data),rep=100,cent=.05)
 nS <- nScree(x=ev$values, aparallel=ap$eigen$qevpea)
 plotnScree(nS)
 
+fa_sol <- factanal(fa_data, factors=4)
+l <- fa_sol$loadings
 ###########################################
 # Lex Analysis
 male_feats <- dat[dat$maleBool == 0, ]
@@ -116,31 +124,42 @@ fa_data = (fa_data[, complete.cases(t(as.matrix(fa_data)))])
 # Create Data Frame for Lexical & Prosodic Prediction
 
 #Everything
-#tot_dat = cbind(dat$maleBool, dat[,9:22], dat[, 411:ncol(dat)], other_features[, 413:444], other_features[, 446:ncol(other_features)]) 
+LAB_COLS = 8:21
+SELF_PROS_COLS = 25:58
+OTHER_PROS_COLS = 1:34 
+SELF_LEX_COLS = 59:153
+OTHER_LEX_COLS = 35:129
+NUM_LABS = 14
+
+#tot_dat = cbind(dat[, LAB_COLS], dat[, SELF_PROS_COLS], dat[,SELF_LEX_COLS], other_features)
 #Just self pros
-#tot_dat = cbind(dat$maleBool, dat[, 9:22], dat[, 440:471])
+#tot_dat = cbind(dat[, LAB_COLS], dat[, SELF_PROS_COLS])
 #Just other pros
-#tot_dat = cbind(dat$maleBool, dat[, 9:22], other_features[, 414:445])
+#tot_dat = cbind(dat[, LAB_COLS], other_features[, OTHER_PROS_COLS])
 #Both people, but pros only
-tot_dat = cbind(dat$maleBool, dat[, 9:22], dat[, 440:471], other_features[, 414:445])
+#tot_dat = cbind(dat[, LAB_COLS], dat[, PROS_COLS], other_features[, OTHER_PROS_COLS])
 #Just Self Lex Feats
-#tot_dat = cbind(dat$maleBool, dat[, 9:22], dat[, 411:439], dat[, 472:ncol(dat)])
-#Just Other Lex Feats 
-#tot_dat = cbind(dat$maleBool, dat[, 9:22], other_features[, 385:413], other_features[, 446:ncol(other_features)])
+#tot_dat = cbind(dat[, LAB_COLS], dat[, SELF_LEX_COLS])
+#Just Other Lex Feats
+#tot_dat = cbind(dat[, LAB_COLS], other_features[, OTHER_LEX_COLS])
 #Both  Lex Feats
-#tot_dat = cbind(dat$maleBool, dat[, 9:22], dat[, 411:439], dat[, 472:ncol(dat)], other_features[, 385:413], other_features[, 446:ncol(other_features)])
-tot_dat <- tot_dat[complete.cases(tot_dat),]
-factors = tot_dat[, 16:ncol(tot_dat)]
+tot_dat = cbind(dat[, LAB_COLS], dat[, SELF_LEX_COLS], other_features[, OTHER_LEX_COLS])
+
 #factors = scale(factors, center = TRUE, scale = TRUE)
+factors = tot_dat[, (NUM_LABS + 1):ncol(tot_dat)]
 
-male_dat = tot_dat[tot_dat[, 1] == 1,]
-female_dat = tot_dat[tot_dat[, 1] == 0,]
+male_dat = tot_dat[dat$selfid < dat$otherid,]
+female_dat = tot_dat[dat$otherid < dat$selfid,]
 
-male_factors = factors[tot_dat[, 1] == 1,]
-female_factors = factors[tot_dat[, 1] == 0,]
+male_factors = factors[dat$selfid < dat$otherid,]
+female_factors = factors[dat$otherid < dat$selfid,]
 
 cur_dat = male_dat
 cur_factors = male_factors
+
+keep_rows = complete.cases(cur_dat)
+cur_dat = cur_dat[keep_rows,]
+cur_factors= cur_factors[keep_rows,]
 
 cur_factors = scale(cur_factors, center = TRUE, scale = TRUE)
 cur_factors = (cur_factors[, complete.cases(t(as.matrix(cur_factors)))])
