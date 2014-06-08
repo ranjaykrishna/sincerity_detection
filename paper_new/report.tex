@@ -1,4 +1,5 @@
 \documentclass[a4paper]{article}
+
 \usepackage{interspeech2013,amssymb,amsmath,epsfig}
 \setcounter{page}{1}
 \sloppy		% better line breaks
@@ -44,16 +45,22 @@ We utilize the SpeedDate dataset introduced by \cite{jurafsky} to build our mode
 812 words, with an average of 406 words per speaker. These worded are divided into an average of 93 turns per date where the speaker changes to the other.
 
 \subsection{Feature Extraction}
-
-\subsubsection{Prosodic Feature}
 We use OpenSMILE to extract Prosodic features from audio files of the speed date. Lexical features are extracted from the transcripts with the help of the LIWC dictionary.
 
+\subsubsection{Prosodic Feature}
+Prosodic features describe the speech of the speaker. In our model, we include features such as \textit{F0, intensity, RMS Amplitute, turn duration} and \textit{pitch}. For each of these different features, we calculate the \textit{min, max, sd, range, sd sd} and \textit{mean}.
+
 \subsubsection{Lexical Feature}
+Using LIWC, introduced by \cite{pennebaker}, we extract \textit{hedge words} like \textit{sort of} and \textit{I guess} that indicate uncertainty. We also gather \textit{meta} words that represent common words in the given speed date scenario and \textit{academic} words like \textit{PhD} and \textit{research}. Finally, we record occurrences of discourse markers.
 
 \subsubsection{LIWC Feature}
+We use the LIWC software to classify words into specific topic groups like \textit{love, hate, food, negate} and \textit{drink}. We count the word occurrences within each speed date for each of these word topics.
 
 \subsubsection{Accomodation Feature}
 \cite{natale}, \cite{ireland} and \cite{levitan} demonstrate through their work the convergence of vocal intensities between interlocutors. To capture this convergence, we extract features from a speaker that accommodate the previous speaker's speech. These features include the \textit{Rate of Speech} of the two speakers over time, the number of \textit{functional} and \textit{content} words also used in the other's previous turn and \textit{laughter} that immediately proceeds the other's laugh.
+
+\subsection{Feature Normalization}
+Before we use the features in our model, we normalize the relevant lexical feature with the the total word count in the conversation. We then normalize all the features such that they all have zero mean and unit variance.
 
 \section{Exploratory Analysis}
 Before attempting to classify speakers as funny or not, we examine the underlying dimensions along which the data varies.  To do, so we use exploratory factor analysis. To determine the number of factors, we use a scree test and various non-graphical measures, including parallel analysis and an optimal coordinates test, as described in (CITE).  We find an optimal number of factors $k = 5$ for both males and females, conducted separately.  Figure~\ref{scree} shows the two scree plots.
@@ -99,6 +106,8 @@ We thank Dan Jurafsky for giving us access to the Speed Dating Dataset and for h
 
 \bibitem{jurafsky}Ranganatha, R., Jurafsky, D., McFarland, D.A., ``Detecting friendly, flirtatious, awkward, and assertive speech in speed-dates``, in Computer Speech \& Language
 Volume 27, Issue 1, Pages 89-115, 2013
+
+\bibitem{pennebaker}Pennebaker, J. W., Booth, R., Francis, M., ``Linguistic inquiry and word count: LIWC2007`` – operator’s manual. Tech. rep., University of Texas, 2007
 
 \bibitem{natale}Natale, M.,  ``Convergence of mean vocal intensity in dyadic communication as a function of social desirability``, in Journal of Personality and
 Social Psychology 32 (5), 790-804, 1975
