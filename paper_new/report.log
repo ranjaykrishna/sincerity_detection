@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.5.15)  7 JUN 2014 16:34
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.5.15)  7 JUN 2014 18:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -140,19 +140,19 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 44.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 37.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
@@ -218,94 +218,124 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 45.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 38.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 45.
-LaTeX Font Info:    Try loading font information for U+msa on input line 45.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 38.
+LaTeX Font Info:    Try loading font information for U+msa on input line 38.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 45.
+LaTeX Font Info:    Try loading font information for U+msb on input line 38.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 45.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 38.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 41.
 
-<ScreeFem.png, id=1, 501.875pt x 477.785pt>
-File: ScreeFem.png Graphic file (type png)
- <use ScreeFem.png>
-Package pdftex.def Info: ScreeFem.png used on input line 72.
+<graphics/ScreeFem.png, id=1, 501.875pt x 477.785pt>
+File: graphics/ScreeFem.png Graphic file (type png)
+
+<use graphics/ScreeFem.png>
+Package pdftex.def Info: graphics/ScreeFem.png used on input line 65.
 (pdftex.def)             Requested size: 99.58464pt x 94.80438pt.
 
-<ScreeMale.png, id=2, 501.875pt x 477.785pt>
-File: ScreeMale.png Graphic file (type png)
- <use ScreeMale.png>
-Package pdftex.def Info: ScreeMale.png used on input line 73.
+<graphics/ScreeMale.png, id=2, 501.875pt x 477.785pt>
+File: graphics/ScreeMale.png Graphic file (type png)
+
+<use graphics/ScreeMale.png>
+Package pdftex.def Info: graphics/ScreeMale.png used on input line 66.
 (pdftex.def)             Requested size: 99.58464pt x 94.80438pt.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 90.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 83.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 90.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 83.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
- <./ScreeFem.png (PNG copy)> <./ScreeMale.png (PNG copy)>] <figure.pdf, id=16, 
-399.4925pt x 245.91875pt>
+ <./graphics/ScreeFem.png (PNG copy)> <./graphics/ScreeMale.png (PNG copy)>]
+
+LaTeX Warning: Reference `spprod' on page 2 undefined on input line 125.
+
+
+LaTeX Warning: Reference `table1' on page 2 undefined on input line 142.
+
+
+LaTeX Warning: Reference `eq3' on page 2 undefined on input line 187.
+
+
+LaTeX Warning: Reference `eq1' on page 2 undefined on input line 187.
+
+<figure.pdf, id=16, 399.4925pt x 245.91875pt>
 File: figure.pdf Graphic file (type pdf)
  <use figure.pdf>
-Package pdftex.def Info: figure.pdf used on input line 205.
+Package pdftex.def Info: figure.pdf used on input line 198.
 (pdftex.def)             Requested size: 227.62204pt x 140.11885pt.
 
-Underfull \hbox (badness 1681) in paragraph at lines 212--217
+Underfull \hbox (badness 1681) in paragraph at lines 205--210
 \OT1/ptm/m/n/9 ac-tive links from the pa-pers dur-ing pro-cess-ing. Hy-per-
  []
 
+
+LaTeX Warning: Citation `ES1' on page 2 undefined on input line 235.
+
+
+LaTeX Warning: Citation `ES2' on page 2 undefined on input line 235.
+
+
+LaTeX Warning: Citation `ES3' on page 2 undefined on input line 235.
+
 [2 <./figure.pdf>]
-Underfull \hbox (badness 1102) in paragraph at lines 255--266
+Underfull \hbox (badness 1102) in paragraph at lines 248--259
 \OT1/ptm/m/n/9 You can use com-mer-cially avail-able tools or for in-stance
  []
 
 
-Underfull \hbox (badness 1389) in paragraph at lines 255--266
+Underfull \hbox (badness 1389) in paragraph at lines 248--259
 \OT1/ptm/m/n/9 http://www.pdfforge.org/products/pdfcreator. The PDF file
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 287.
-[3] (./report.aux) ) 
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 280.
+[3] (./report.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2632 strings out of 495028
- 34171 string characters out of 6181497
- 93838 words of memory out of 5000000
+ 2633 strings out of 495028
+ 34252 string characters out of 6181497
+ 93781 words of memory out of 5000000
  5781 multiletter control sequences out of 15000+600000
  27680 words of font info for 64 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  37i,8n,26p,537b,323s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier
-/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (3 pages, 206233 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/urw/times/utmri8a.pfb>
+Output written on report.pdf (3 pages, 206846 bytes).
 PDF statistics:
  75 PDF objects out of 1000 (max. 8388607)
  52 compressed objects within 1 object stream
