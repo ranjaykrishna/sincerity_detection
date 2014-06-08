@@ -1,0 +1,91 @@
+%
+% File acl2014.tex
+%
+% Contact: koller@ling.uni-potsdam.de, yusuke@nii.ac.jp
+%%
+%% Based on the style files for ACL-2013, which were, in turn,
+%% Based on the style files for ACL-2012, which were, in turn,
+%% based on the style files for ACL-2011, which were, in turn, 
+%% based on the style files for ACL-2010, which were, in turn, 
+%% based on the style files for ACL-IJCNLP-2009, which were, in turn,
+%% based on the style files for EACL-2009 and IJCNLP-2008...
+
+%% Based on the style files for EACL 2006 by 
+%%e.agirre@ehu.es or Sergi.Balari@uab.es
+%% and that of ACL 08 by Joakim Nivre and Noah Smith
+
+\documentclass[11pt]{article}
+\usepackage{acl2014}
+\usepackage{times}
+\usepackage{url}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\graphicspath{ {graphics/} }
+%\setlength\titlebox{5cm}
+
+% You can expand the titlebox if you need extra space
+% to show all the authors. Please do not make the titlebox
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+
+\title{Relationships Between Prosodic-Linguistic Features and High-Level Descriptors of Speed Dates}
+
+\author{Sidd Jagadish,  Ranjay Krishna\and Gabriele Carotti-Sha\\
+Department of Statistics, Stanford University\\
+Department of Computer Science, Stanford University \\
+Symbolic Systems, Stanford University
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We extracted lexical and prosodic features of speech from 1493 speed dates at Stanford University.  Each speed date was accompanied by information about what each participant thought of the other, including 1-10 assessments of intelligence, funniness, and sincerity.  Here, we investigate prediction of these assessments from linguistic and prosodic features.  We find that for many labels, lexical and prosodic features can powerfully predict our high-level descriptors.
+\end{abstract}
+
+\section{Data}
+
+\section{Feature Extraction}
+Prosodic features were extracted using openSMILE.  Lexical features were extracted in Python, with the help of the LIWC dictionary.  
+
+\section{Prosodic Features}
+ 
+\section{Exploratory Analysis}
+\subsection{Sparse PCA}
+Before building any classifier, we must first unveil any underlying structure in our predictor matrix.  We begin with (FILL-IN:\# of inital prosodic features) prosodic features.  Considering that we only have 1493 full data points, we clearly want to reduce the dimesion somehow.  We begin by running a Sparse Principal Component Analysis, as outined in Zou(2006).  This method places an L1-Norm penalty on the loadings vectors in Principal Component Analysis, arriving at a sparse reduction.  As seen in the chart below, most of our non-zero coefficients correspond to MFCC features.  This is worrisome, as this means that most of the variation in our prediction data is attributable to MFCC features, which largely indicate the vowels that our speaker is making.  This is understandable, but ultimately not relevant to our pursuits.  For this reason, we choose to discard the MFCC features for the remainder of our anaysis.
+
+
+\subsection{Factor Analysis}
+Even after removing MFCC features, we have FILL IN NUMBER OF PROSODIC FEATURES per speaker per date.  This is more than we would like to have in order to have easily interpretable results.  As such, we wanted to run a factor analysis on our prosodic predictors.  It is important to consider that in this data set, much of the variation in the data may be attributable to variation in gender.  As we did not want gender information to be our most important latent factor, we first ran factor analysis separately for the two groups.  We found very similar results for the two separate factor analyses.  The results are shown below.
+
+%TODO: Include FA Graphics
+We see that for both sexes, the first factor largely corresponds to maximum pitch third to min pitch, and fourth to turn duration.  We see differences in the second and fifth factors -- the second factor for males, which largely corresponds to loudness, is the fifth factor for females.  The fifth factor for males, which largely corresponds to variation in loudness, is the second factor for females.  Thus, our latent factors are very similar for the two sexes.  When we pool the two sexes, we again get very similar factor coefficients (shown below).  We will use these factors for prosodic features for the remainder of this paper.
+
+%TODO: Include pooled FA chart 
+
+We ran a factor analysis on our prosodic predictors, uncovering the following useful latent themes.  We see our first factor corresponds to pitch, the second roughly to intensity, the third to turn duration, the fourth to variation in intensity, and the fifth to variation in pitch. To determine the number of factors to use, we used parallel analysis (Hayton 2004) and a scree plot (shown below) uncovering 5 factors.
+
+\begin{center}
+\includegraphics[width=200pt]{LargeScree.png}
+\end{center}
+
+\section{Classifiers}
+\subsection{Prosody Only}
+First, we attempted to classify our labels, in particular funniness and intelligence, by our prosodic factors alone.  Here, we are faced with the following important decision.  To classify one participant's (the listener's) perceptions of the other participant (the speaker), whose prosodic features should we use.  Clearly both the listener's and the speaker's prosodic features should be informative -- here, we first attempted to use only the speaker's prosodic features, as we would like to answer the question of 'How much information about funniness/intelligence/sincerity is contained in a speaker's prosody?'
+
+To answer this question, we fit three models for each of 12 labels, seen in the table below.  The first model is a classification SVM with a linear kernel, where our model is described by (TODO: Put in SVM model).  Our second model is a classification SVM with a radial basis fuction kernel.  Our third model is a AdaBoost model with decision trees as weak classifiers.  We note now that the latter two models allow for non-linear decision boundaries, as we would expect for the task at hand.  As such, we expect these classifiers to outperform the linear kernel SVM. 
+
+Below, we see the average results of 5-fold cross-validation for our three different binary classification methods, for each of 10 different labels.  We see that, at a baseline of 50\% (each of our training examples consisted of half positive cases and half negative cases), many of these classifiers do not perform extremely well.  However, we note that for the labels studied in Jurafsky \& Ranganath (2013), performance of our AdaBoost classifier is comparable to their L1-penalized SVM.  It seems that the accuracy lost from feature inclusion (their model included prosodic features from \emph{both} speakers, as well as lexical and ``accomodation'' features), we have gained from model choice.  In general, our AdaBoost classifier and our SVM with a RBF kernel outperform our SVM with a linear kernel, indicating that we may have noninear classification boundaries here.  In any case, we have shown that, especially for labels such as intelligence and funniness, the speaker's prosodic features include useful information for classification.
+
+\subsection{Explanatory Power of Self Features vs. Other Features}
+Another interesting question here is comparing the explanatory power of one's own speech to that of their partner's speech.  Do the listener's prosodic features in fact reveal more about what they think of the speaker than the speaker's prosodic features do, and are the same features important in making these classifications.  Here, I run the same 3 classifiers as above on the same labels, achieving the following results. 
+
+\begin{center}
+\includegraphics[width = 220pt]{SelfOther.png} 
+\end{center}
+We see that in general, participant 1's features are better predictors of labels assigned to particant 1 than participant 2's features are.  For intelligence, this difference is particularly stark (p < 0.01).  We interpret these results as the following: Some information about the speaker's apparent intelligence is revealed through this speaker's prosody.  Some information about the listener's perception of the speaker's intelligence is revealed through the listener's speech.  In the case of intelligence, we find that the speaker's prosody is much more informative than the listener's prosody.  In humor and awkwardness, however, this is not the case.  As found in our lexical analysis (NEED TO INCLUDE LAUGHTER AS A FEATURE IN LEXICAL ANALYSIS), both of these labels are closely associated with laughter.  We now investigate whether the laughter in funny conversations differs from the laughter in awkward conversations.
+\bibliographystyle{acl}
+\bibliography{acl}
+
+\end{document}

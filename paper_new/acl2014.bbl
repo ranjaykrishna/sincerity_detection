@@ -1,0 +1,11 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citename{Collobert and Weston}2008]{Collobert2008}
+Ronan Collobert and Jason Weston.
+\newblock 2008.
+\newblock A uniﬁed architecture for natural language processing: Deep neural
+  networks with multitask learning.
+\newblock In {\em Proceedings of the 25th International Conference on Machine
+  Learning}.
+
+\end{thebibliography}
