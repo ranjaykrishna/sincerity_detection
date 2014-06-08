@@ -26,12 +26,12 @@
 \makeatletter
 \def\name#1{\gdef\@name{#1\\}}
 \makeatother
-\name{{\em Sidd Jagadish, Ranjay Krishna, Gabriele Carotti-Sha}}
-
-\address{$^1$Department of Statistics, Stanford University \\
-  $^2$Department of Computer Science, Stanford University\\
-  $^3$ Symbolic Systems, Stanford University\\
-{\small \tt siddj@stanford.edu, rak248@stanford.edu, gcarotti@stanford.edu}}
+\name{{\em Sidd Jagadish$^\ast$, Ranjay Krishna$^\ddagger$, Gabriele Carotti-Sha$^\mp$}}
+\address{{\small \tt siddj@stanford.edu, rak248@stanford.edu, gcarotti@stanford.edu}\\
+$\ast$Department of Statistics, Stanford University \\
+  $^\ddagger$Department of Computer Science, Stanford University\\
+  $^\mp$ Symbolic Systems, Stanford University\\
+}
 
 %
 \begin{document}
@@ -47,10 +47,7 @@ We extract lexical and prosodic features of speech from 1493 speed dates at Stan
 %
 
 \section{Introduction}
-This template can be found on the conference website. Please use
-either a LibreOffice, MS-Word\reg\ or a \LaTeX\ format file when preparing your
-submission. Information for full paper submission is available on the
-conference web site.
+
 
 \section{Data}
 We were given, courtesy of Jurafsky (2013), a dataset consisting of 1980 (CHECK THIS VALUE) heterosexual speed dates. For each date, we have two .wav files corresponding to the microphones attached to each participant.  We also have high-level descriptors of each participant, including their height, weight, and ethnicity.  In addition to this, for each participant, we have 1-10 assessments of various qualities of both themselves and each other person they went on a speeddate with, including funniness and courteousness.
@@ -70,52 +67,6 @@ Before attempting to classify speakers as funny or not, we examine the underlyin
 Interestingly, although we find that the various factors for male and female speech are similar, they explain different amounts of variation in the data.  For males, the first factor reflects high intensity values and low intensity variation, explaining   
 
 \section{Page layout and style}
-
-Authors should observe the following rules for page layout. A
-highly recommended way to meet these requirements is to use a given
-template (LibreOffice, Word\reg\ or \LaTeX) and check details against the
-corresponding example file.
-
-\subsection{Basic layout features}
-
-\begin{itemize}
-%\itemsep -1.3mm
-\item Proceedings will be printed in A4 format. Authors must submit their papers
-in A4 format.
-\item Two columns are used except for the title part and possibly for large 
-figures that need a full page width.
-\item Left margin is 20 mm.
-\item Column width is 80 mm.
-\item Spacing between columns is 10 mm.
-\item Top margin 25 mm (except for the first page which is 30 mm to the title top).
-\item Text height (without headers and footers) is maximum 235 mm.
-\item Headers and footers must be left empty (they will be added for 
-printing and the INTERSPEECH 2013 media).
-\item Check indentations and spacings by comparing to this 
-example file (in pdf).
-\end{itemize}
-
-
-\subsubsection{Headings}
-
-Section headings are centered in boldface
-with the first word capitalized and the rest of the heading in 
-lower case. Sub-headings appear like major headings, except they 
-start at the left margin in the column.
-Sub-sub-headings appear like sub-headings, except they are in italics 
-and not boldface. See the examples given in this 
-file. No more than 3 levels of headings should be used.
-
-\subsection{Text font}
-
-Times or Times Roman font is used for the main text. Font size in the main text 
-must be 9 points, and in the References section 8 points. Other font
-types may be used if needed for special purposes. It is VERY IMPORTANT
-that while making the final PDF file, you embed all used fonts!
-
-\LaTeX\ users: users should use Adobe Type 1 fonts such as Times or Times
-Roman. These are used automatically by the interspeech2013.sty style
-file. Authors must not use Type 3 (bitmap) fonts.
 
 \subsection{Figures}
 
@@ -200,78 +151,20 @@ No more math is needed to show how useful the result is!
 \label{spprod}
 \end{figure}
 
-\subsection{Hyperlinks}
-
-For technical reasons, the proceedings editor will strip all active
-links from the papers during processing. Hyperlinks can be included in
-your paper, if written in full, eg. ``http://www.foo.com/index.html''.
-The link text must be all black. Please make sure that they present no
-problems in printing to paper.
-
-\subsection{Multimedia files}
-
-The INTERSPEECH 2013 organizing committee offers the possibility to submit
-multimedia files. These files are meant for audio-visual illustrations that
-cannot be conveyed in text, tables and graphs. Just like you would when
-including graphics, make sure that you have sufficient author rights to the
-multimedia materials that you submit for publication. The proceeding media
-will NOT contain readers or players, so be sure to use widely accepted file
-formats, such as MPEG, Windows WAVE PCM (.wav) or Windows Media Video
-(.wmv) using standard codecs. The files you submit will be accessible from
-the abstract cards on the media and via a bookmark in the manuscript. From
-within the manuscript, refer to a multimedia illustration by its filename.
-Use short file names without blanks.
-
-\subsection{Page numbering}
-
-Final page numbers will be added later to the document
-electronically. 
-{\em Don't make any footers or headers!}
-
 \subsection{References}
 
 The reference format is the standard IEEE one.
 References should be numbered in order of appearance, 
 for example \cite{ES1}, \cite{ES2}, and \cite{ES3}. 
 
-\subsection{Abstract}
-
-The total length of the abstract is limited to 200 words. The
-abstract included in your paper and the one you enter during web-based
-submission must be identical. Avoid non-ASCII characters or symbols as they
-may not display correctly in the abstract book.
-
-\subsection{Author affiliation}
-Please list country names as part of the affiliation for each country.
-
-\subsection{Submitted files}
-Authors are requested to submit PDF files of their manuscripts. You
-can use commercially available tools or for instance
-http://www.pdfforge.org/products/pdfcreator.  The PDF file should
-comply with the following requirements: (a) there must be no PASSWORD
-protection on the PDF file at all; (b) all fonts must be embedded; and
-(c) the file must be text searchable (do CTRL-F and try to find a
-common word such as 'the'). The proceedings editors (Causal
-Productions) will contact authors of non-complying files to obtain a
-replacement. In order not to endanger the preparation of the
-proceedings, papers for which a replacement is not provided timely
-will be withdrawn.
-
 \section{Discussion}
-This is the discussion. This is the discussion. This is the discussion. 
-Is there any discussion.
-
-This is the next paragraph of the discussion. And the last sentence of it.
 
 
 \section{Conclusions}
 
-Authors must proof read their PDF file prior to submission to ensure it is 
-correct. Authors should not rely on proofreading the Word file. Please 
-proofread the PDF file before it is submitted.
 
 \section{Acknowledgements}
-The ISCA Board would like to thank the organizing committees of past INTERSPEECH conferences for their help and for kindly providing the template files.
+We thank Dan Jurafsky for giving us access to the Speed Dating Dataset and for his continued guidance during this project.
 
 \newpage
 %
