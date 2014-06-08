@@ -137,13 +137,16 @@ NUM_LABS = 14
 #Just other pros
 #tot_dat = cbind(dat[, LAB_COLS], other_features[, OTHER_PROS_COLS])
 #Both people, but pros only
-#tot_dat = cbind(dat[, LAB_COLS], dat[, PROS_COLS], other_features[, OTHER_PROS_COLS])
+tot_dat = cbind(dat[, LAB_COLS], dat[, PROS_COLS], other_features[, OTHER_PROS_COLS])
+
+#Testing Adaboost
+
 #Just Self Lex Feats
 #tot_dat = cbind(dat[, LAB_COLS], dat[, SELF_LEX_COLS])
 #Just Other Lex Feats
 #tot_dat = cbind(dat[, LAB_COLS], other_features[, OTHER_LEX_COLS])
 #Both  Lex Feats
-tot_dat = cbind(dat[, LAB_COLS], dat[, SELF_LEX_COLS], other_features[, OTHER_LEX_COLS])
+#tot_dat = cbind(dat[, LAB_COLS], dat[, SELF_LEX_COLS], other_features[, OTHER_LEX_COLS])
 
 #factors = scale(factors, center = TRUE, scale = TRUE)
 factors = tot_dat[, (NUM_LABS + 1):ncol(tot_dat)]
@@ -164,20 +167,31 @@ cur_factors= cur_factors[keep_rows,]
 cur_factors = scale(cur_factors, center = TRUE, scale = TRUE)
 cur_factors = (cur_factors[, complete.cases(t(as.matrix(cur_factors)))])
 
+#Dimensionality Reduction for Lex Features
+
+
+
+
+
+
+
 #Factor Classifier
 #First get male factor values
-j_columns = c("tndur.Mean", 'tndur.SD', 'pmin.Mean', 'pmin.SD', 'pmax.Mean', 'pmax.SD', 'pmean.Mean', 'pmean.SD', 'psd.Mean', 'psd.SD', 'imin.Mean', 'imin.SD', 'imax.Mean', 'imax.SD', 'imean.Mean', 'imean.SD', 'voiceProb_sma_min', 'voiceProb_sma_amean', 'voiceProb_sma_max', 'voiceProb_sma_stddev')
-male_pros <- male_factors[, which(colnames(male_factors) %in% j_columns)]
-fa_pros <- scale(male_pros, scale = TRUE, center = TRUE)
-fa_vals_male = fa_pros %*% l_male
+if(FALSE){
+  j_columns = c("tndur.Mean", 'tndur.SD', 'pmin.Mean', 'pmin.SD', 'pmax.Mean', 'pmax.SD', 'pmean.Mean', 'pmean.SD', 'psd.Mean', 'psd.SD', 'imin.Mean', 'imin.SD', 'imax.Mean', 'imax.SD', 'imean.Mean', 'imean.SD', 'voiceProb_sma_min', 'voiceProb_sma_amean', 'voiceProb_sma_max', 'voiceProb_sma_stddev')
+  male_pros <- male_factors[, which(colnames(male_factors) %in% j_columns)]
+  fa_pros <- scale(male_pros, scale = TRUE, center = TRUE)
+  fa_vals_male = fa_pros %*% l_male
+  
+  
+  other_j_columns = paste('Other', j_columns, sep = '.')
+  other_pros <- male_factors[, which(colnames(male_factors) %in% other_j_columns)]
+  other_fa_pros <- scale(other_pros, scale = TRUE, center = TRUE)
+  fa_vals_other = fa_pros %*% l_fem
+  
+  cur_factors = cbind(fa_vals_male, fa_vals_other)
+}
 
-
-other_j_columns = paste('Other', j_columns, sep = '.')
-other_pros <- male_factors[, which(colnames(male_factors) %in% other_j_columns)]
-other_fa_pros <- scale(other_pros, scale = TRUE, center = TRUE)
-fa_vals_other = fa_pros %*% l_fem
-
-cur_factors = cbind(fa_vals_male, fa_vals_other)
 
 #Funniness Only
 library(e1071)
@@ -191,6 +205,11 @@ gt = rep(0, length(ones) + length(zeros)) #Ground Truth
 gt[1:length(ones)] = 1
 split_factors <- cur_factors[c(ones, zeros), ]
 outcome = as.factor(gt)
+
+#Test Full AdaBoost
+control <- rpart.control(cp = -1, maxdepth = 1,maxcompete = 1,xval = 0)
+ada.mod.full = ada(split_factors, gt, control = control)
+
 scores = matrix(rep(0, 10 * 4), nrow = 10)
 for(iter in 1:10){ #Do 5-fold CV 10 times
   print(paste("Iteration: ", toString(iter)))
@@ -238,9 +257,6 @@ for(iter in 1:10){ #Do 5-fold CV 10 times
   scores[iter, 3] = mean(accs_ada)
   scores[iter, 4] = mean(accs_liblineaR)
 }
-
-
-
 #Get all Labels
 library(e1071)
 library(ada)
@@ -309,3 +325,6 @@ for(col in 2:15){ #Iterate through output columns
   final_scores[col - 1,] = apply(scores, 2, mean) #-1 is to make 1-index
 }
 write.table(final_scores, 'results/male_self_lex.csv', sep = ';')
+
+
+#Get Adaboost interpretation
