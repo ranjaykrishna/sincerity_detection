@@ -1,0 +1,35 @@
+acc_file = open('acc_features.csv', 'r')
+feature_file = open('all_features.csv', 'r')
+output_file = open('all_new_features.csv', 'w')
+
+feature_map = {}
+n = None
+for line in acc_file:
+  features = line.split(',')
+  if n == None:
+    n = len(features) - 3
+  gender = features[len(features)-1]
+  male = features[len(features)-2]
+  female = features[len(features)-3]
+  speaker = male if 'True' in gender else female
+  other = female if 'True' in gender else male
+  if speaker not in feature_map:
+    feature_map[speaker] = {}
+  feature_map[speaker][other] = features[0:len(features)-3]
+  
+for line in feature_file:
+  if 'selfid' in line:
+    output_file.write(line.replace('\n','') + ';rate_of_speech;content_word_counts;laugh_counts;function_word_counts\n')
+    continue
+  features = line.split(';')
+  if features[0] in feature_map and features[1] in feature_map[features[0]]:
+    output = features + feature_map[features[0]][features[1]][0:n]
+  else:
+    output = features + ([0] * n)
+    print str(features[0]) + ' is not in liwc'
+  output_file.write(';'.join(map(str, output)).replace('\n', '') + '\n')
+
+feature_file.close()
+acc_file.close()
+output_file.close()
+
