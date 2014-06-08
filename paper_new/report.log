@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  8 JUN 2014 03:18
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  8 JUN 2014 03:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -254,21 +254,22 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
 
-Underfull \vbox (badness 1515) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
 
+ []
 
 <graphics/ScreeFem.png, id=1, 501.875pt x 477.785pt>
 File: graphics/ScreeFem.png Graphic file (type png)
 
 <use graphics/ScreeFem.png>
-Package pdftex.def Info: graphics/ScreeFem.png used on input line 61.
+Package pdftex.def Info: graphics/ScreeFem.png used on input line 62.
 (pdftex.def)             Requested size: 99.58464pt x 94.80438pt.
 
 <graphics/ScreeMale.png, id=2, 501.875pt x 477.785pt>
 File: graphics/ScreeMale.png Graphic file (type png)
 
 <use graphics/ScreeMale.png>
-Package pdftex.def Info: graphics/ScreeMale.png used on input line 62.
+Package pdftex.def Info: graphics/ScreeMale.png used on input line 63.
 (pdftex.def)             Requested size: 99.58464pt x 94.80438pt.
  [1{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -276,9 +277,9 @@ Package pdftex.def Info: graphics/ScreeMale.png used on input line 62.
 
  <./graphics/ScreeFem.png (PNG copy)> <./graphics/ScreeMale.png (PNG copy)>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 97.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 98.
 
-Underfull \hbox (badness 1231) in paragraph at lines 99--101
+Underfull \hbox (badness 1231) in paragraph at lines 100--102
 []\OT1/ptm/m/n/8 Ranganatha, R., Ju-raf-sky, D., Mc-Far-land, D.A., ``De-tect-i
 ng
  []
@@ -291,24 +292,23 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  2597 strings out of 493488
  34095 string characters out of 3141326
- 93195 words of memory out of 3000000
+ 93196 words of memory out of 3000000
  5847 multiletter control sequences out of 15000+200000
  24510 words of font info for 60 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 37i,8n,24p,528b,323s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,8n,24p,783b,323s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/tex
 live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texliv
-e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
-/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2
-012/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2012/texm
-f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fon
-ts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/u
-rw/times/utmri8a.pfb>
-Output written on report.pdf (2 pages, 159894 bytes).
+e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/
+2012/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2012/tex
+mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fo
+nts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/
+urw/times/utmri8a.pfb>
+Output written on report.pdf (2 pages, 153712 bytes).
 PDF statistics:
- 46 PDF objects out of 1000 (max. 8388607)
- 31 compressed objects within 1 object stream
+ 42 PDF objects out of 1000 (max. 8388607)
+ 28 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
