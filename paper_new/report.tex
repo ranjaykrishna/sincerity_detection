@@ -1,6 +1,7 @@
 \documentclass[a4paper]{article}
 
 \usepackage{interspeech2013,amssymb,amsmath,epsfig}
+\usepackage{booktabs}
 \setcounter{page}{1}
 \sloppy		% better line breaks
 \ninept
@@ -55,7 +56,7 @@ We utilize the SpeedDate dataset introduced by \cite{jurafsky} to build our mode
 We use OpenSMILE to extract Prosodic features from audio files of the speed date. Lexical features are extracted from the transcripts with the help of the LIWC dictionary.
 
 \subsubsection{Prosodic Feature}
-Prosodic features describe the speech of the speaker. In our model, we include features such as \textit{F0, intensity, RMS Amplitute, turn duration} and \textit{pitch}. For each of these different features, we calculate the \textit{min, max, sd, range, sd sd} and \textit{mean}.
+Prosodic features describe the speech of the speaker. In our model, we include features such as \textit{F0, intensity, RMS Amplitute, turn duration} and \textit{pitch}. For each of these different features, we calculate the \textit{min, max, standard deviation (SD), range, sd sd} and \textit{mean}.
 
 \subsubsection{Lexical Feature}
 Using LIWC, introduced by \cite{pennebaker}, we extract \textit{hedge words} like \textit{sort of} and \textit{I guess} that indicate uncertainty. We also gather \textit{meta} words that represent common words in the given speed date scenario and \textit{academic} words like \textit{PhD} and \textit{research}. Finally, we record occurrences of discourse markers.
@@ -72,9 +73,9 @@ Before we use the features in our model, we normalize the relevant lexical featu
 \section{Exploratory Analysis}
 Before attempting to classify speakers as funny or not, we examine the underlying dimensions along which the data varies.  To do, so we use exploratory factor analysis. To determine the number of factors, we use a scree test and various non-graphical measures, including parallel analysis and an optimal coordinates test, as described in (CITE).  We find an optimal number of factors $k = 5$ for both males and females, conducted separately.  Figure~\ref{scree} shows the two scree plots.
 
-\begin{figure}[t]
-\includegraphics[width = 3.5cm]{graphics/ScreeFem.png}
-\includegraphics[width = 3.5cm]{graphics/ScreeMale.png}
+\begin{figure}[h]
+\includegraphics[width = 3.8cm]{graphics/ScreeFem.png}
+\includegraphics[width = 3.8cm]{graphics/ScreeMale.png}
 \caption{{\it Determining Number of Factors}\label{scree}}  
 \label{scree}
 \end{figure}
@@ -89,17 +90,62 @@ We divide the dataset into two separate groups based on gender. For each gender,
 We create a training set for a given characteristic for a given gender by splitting the dataset into deciles. We use the top decile as positive and the bottom decile as negative examples. 
 
 \subsection{Classifiers}
-We start by using an SVM with a linear kernel. To improve our classifications, we next enforce an L1 norm on the SVM to compensate for the large number of lexical and prosodic features we extract. In case our decision boundaries are non-linear, we also train a RBF kernelized SVM. However, we lose interpretability of the features by using an RBF. So, we train a fourth Adaboost Classifier with decision stumps of unary depth to maintain interpretability while also allowing for a non-linear decision boundary.  
+We start by using an SVM with a linear kernel. To improve our classifications, we next enforce an L1 norm on the SVM to compensate for the large number of lexical and prosodic features we extract. In case our decision boundaries are non-linear, we also train a RBF kernelized SVM. However, we lose interpretability of the features by using an RBF. So, we train a fourth Adaboost Classifier with decision stumps of unary depth to maintain interpretability while also allowing for a non-linear decision boundary. 
 
 \section{Classification Results}
 
 \section{Analysis}
 
 \subsection{Adaboost Weights}
-By limiting the depth of the trees in Adaboost to 1, we are able to extract the decision boundaries
+By limiting the depth of the trees in Adaboost to 1, we are able to unravel the top features that were used by each tree in Adaboost. We aggregate these top features by summing across the weights associated with each tree split to capture the features with the highest weights.
+
+Since Adaboost learns different classifier each time, we perform a 10 fold feature aggregation and averaging the sum of weights for each feature split. We perform this aggregation by training on lexical and prosodic features independently. Table~\ref{table:adaboost} shows the top features that adaboost splits on. In the table, \textit{Other} refers to the listener's features.
+
+\begin{table*} [t]
+\centering
+\begin{center}
+\vspace{2mm}
+\begin{tabular}{c l l l l}
+\hline
+\multicolumn{1}{l}{\#} & 
+\multicolumn{2}{c}{Funny} &
+\multicolumn{2}{c}{Courteous}\\
+\cmidrule(r){2-3}
+\cmidrule(r){4-5}
+ & Lexical & Prosodic  & Lexical & Prosodic\\
+ \hline
+ 1 & Other hear & Other imin SD & syllables per turn & imax mean \\
+ 2 & Other youKnow & Other pslope mean & probably & Other prange mean \\
+ 3 & Other see & tndur SD & like & Other pmin SD \\
+ 4 & Other achieve & Other tndur SD & relativ & ptmax SD \\
+ 5 & Other LaughAcc & Other pslnjmp mean & Other you know & itmin SD \\
+ 6 & syllables per turn & tndur mean & humans & Other pslnjmp mean \\
+ 7 & program & pquan mean & cogmech & Other.imin.SD \\
+ 8 & Other past & imax mean & sad & pquan mean \\
+ 9 & program & Other tndur mean & Other anxious & ptmin SD \\
+ 10 & Other pronoun & Other pmax mean & i think & iquan mean \\
+ \hline
+\end{tabular}
+\caption{\label{table:adaboost} {\it  Feature Splits with Highest Weights in Adaboost.}}
+\end{center}
+\label{table:results}
+\end{table*}
+
+\subsubsection{Funny}
+Based on the results for funny, words related the other person using words in the LIWC categories \textit{hear, youKnow, see} and \textit{achieve} are good indicators that the other person finds the speaker funny. The \textit{achieve} category correspond to words like \'win\' that has been expressed by the listener after the speaker delivers a joke. Words corresponding to \textit{hear} and \textit{see} demonstrate that the listener it paying attention and acknowledging the speaker's speech. The 5$^{th}$ feature is laughter accommodation where the listener laughs in reaction to the speaker's laugh.  
+
+The prosodic features for funny also correspond well with the lexical features as shorter \textit{turn duration}, which is the 4$^{th}$ and 5$^{th}$ on the prosodic features list, between the two people usually results in more words in the LIWC \textit{see} and \textit{hear} categories of acknowledgement. These features also show that a high intensity min SD from the listener and a high pitch slope mean are good indicators of funny.
+
+\subsubsection{Courteous}
+Discourse words like \textit{like, probably and I think} are good lexical indicators for detecting courteous. The honesty weakening of there sentences by using such words makes them appear more courteous. Also, talking about \textit{humans} and \textit{cognitive processes} are important. The use of \text{anxious} and \textit{fillers} like \textit{you know} are the only features of the listener that have a high weight.
+
+Low intensity max mean with small pitch range SD and pitch min SD are important prosodic features. This implies that large changes in speech are perceived as non being courteous.
+
+\subsubsection{Comparing Funny and Courteous}
+It is interesting to note that the speaker's features are the most important when determining whether the speaker will be perceived as courteous. On the other hand, the listeners features are more important for detecting funny.
 
 \section{Future Work}
-The model we use has a lot of features and reducing dimensionality of this data by learning hidden variables from an sparse auto-encoder might give us more insight into how we can create a shared representation of the lexical with the prosodic features.
+The model we build has a lot of features and reducing dimensionality of this data by learning hidden variables from an sparse auto-encoder might give us more insight into how we can create a shared representation of the lexical with the prosodic features.
 
 The SpeedDate dataset we use also contains ratings of people's intelligence, sincerity and other characteristics. An interesting area to explore would find correlations between these characteristics and their corresponding prosodic and lexical features.
 
