@@ -2,6 +2,7 @@
 #setwd("~/CS 224S/Final Project/Analysis");
 setwd('~/Documents/workspace/sincerity/sincerity_detection')
 library(e1071)
+library(rpart)
 library(ada)
 library(LiblineaR)
 
@@ -56,8 +57,8 @@ female_dat = tot_dat[dat$otherid < dat$selfid,]
 male_factors = factors[dat$selfid < dat$otherid,]
 female_factors = factors[dat$otherid < dat$selfid,]
 
-cur_dat = male_dat
-cur_factors = male_factors
+cur_dat = tot_dat
+cur_factors = factors
 
 keep_rows = complete.cases(cur_dat)
 cur_dat = cur_dat[keep_rows,]
@@ -66,7 +67,8 @@ cur_factors= cur_factors[keep_rows,]
 cur_factors = scale(cur_factors, center = TRUE, scale = TRUE)
 cur_factors = (cur_factors[, complete.cases(t(as.matrix(cur_factors)))])
 
-col = 12 # This is the label we are trying to predict
+for (num in 1:10) {
+col = 14 # This is the label we are trying to predict
 print(paste("Label: ", colnames(cur_dat)[col]))
 gt_sinc <- cur_dat[, col] #Get right col
 q_sinc <- quantile(gt_sinc, probs = seq(0, 1, 0.1))
@@ -88,4 +90,5 @@ for (index in 1:length(top_variables)) {
   ada_vars[index, 1] = top_variables[[index]]
   ada_vars[index, 2] = alphas[[index]]
 }
-write.table(ada_vars, 'ada_vars.csv', sep = ',')
+write.table(ada_vars, 'ada_vars.csv', sep = ',', append=TRUE)
+}
