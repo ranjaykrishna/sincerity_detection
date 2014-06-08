@@ -48,12 +48,23 @@ We extract lexical and prosodic features of speech from 1493 speed dates at Stan
 
 \section{Introduction}
 
+\section{Related Works}
+
 
 \section{Data}
 We were given, courtesy of Jurafsky (2013), a dataset consisting of 1980 (CHECK THIS VALUE) heterosexual speed dates. For each date, we have two .wav files corresponding to the microphones attached to each participant.  We also have high-level descriptors of each participant, including their height, weight, and ethnicity.  In addition to this, for each participant, we have 1-10 assessments of various qualities of both themselves and each other person they went on a speeddate with, including funniness and courteousness.
 
 \subsection{Feature Extraction}
+
+\subsubsection{Prosodic Feature}
 Prosodic features were extracted using openSMILE.  Lexical features were extracted in Python, with the help of the LIWC dictionary.  
+
+\subsubsection{Lexical Feature}
+
+\subsubsection{LIWC Feature}
+
+\subsubsection{Accomodation Feature}
+Accommodation features include rate of 
 
 \section{Exploratory Analysis}
 Before attempting to classify speakers as funny or not, we examine the underlying dimensions along which the data varies.  To do, so we use exploratory factor analysis. To determine the number of factors, we use a scree test and various non-graphical measures, including parallel analysis and an optimal coordinates test, as described in (CITE).  We find an optimal number of factors $k = 5$ for both males and females, conducted separately.  Figure 1 shows the two scree plots.
@@ -65,6 +76,12 @@ Before attempting to classify speakers as funny or not, we examine the underlyin
 \end{figure}
 
 Interestingly, although we find that the various factors for male and female speech are similar, they explain different amounts of variation in the data.  For males, the first factor reflects high intensity values and low intensity variation, explaining   
+
+\section{Methodology}
+
+\section{Classification Results}
+
+\section{Analysis}
 
 \section{Page layout and style}
 
@@ -157,7 +174,7 @@ The reference format is the standard IEEE one.
 References should be numbered in order of appearance, 
 for example \cite{ES1}, \cite{ES2}, and \cite{ES3}. 
 
-\section{Discussion}
+\section{Future Work}
 
 
 \section{Conclusions}

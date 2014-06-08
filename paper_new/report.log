@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  7 JUN 2014 18:57
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  7 JUN 2014 20:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -254,59 +254,58 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 File: graphics/ScreeFem.png Graphic file (type png)
 
 <use graphics/ScreeFem.png>
-Package pdftex.def Info: graphics/ScreeFem.png used on input line 62.
+Package pdftex.def Info: graphics/ScreeFem.png used on input line 73.
 (pdftex.def)             Requested size: 99.58464pt x 94.80438pt.
 
 <graphics/ScreeMale.png, id=2, 501.875pt x 477.785pt>
 File: graphics/ScreeMale.png Graphic file (type png)
 
 <use graphics/ScreeMale.png>
-Package pdftex.def Info: graphics/ScreeMale.png used on input line 63.
+Package pdftex.def Info: graphics/ScreeMale.png used on input line 74.
 (pdftex.def)             Requested size: 99.58464pt x 94.80438pt.
  [1{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
  <./graphics/ScreeFem.png (PNG copy)> <./graphics/ScreeMale.png (PNG copy)>] <f
-igure.pdf, id=17, 399.4925pt x 245.91875pt>
+igure.pdf, id=16, 399.4925pt x 245.91875pt>
 File: figure.pdf Graphic file (type pdf)
 
 <use figure.pdf>
-Package pdftex.def Info: figure.pdf used on input line 149.
+Package pdftex.def Info: figure.pdf used on input line 166.
 (pdftex.def)             Requested size: 227.62204pt x 140.11885pt.
+ [2 <./figure.pdf>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 173.
- [2 <./figure.pdf>] (./report.aux)
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 190.
+ [3
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (./report.aux) ) 
 Here is how much of TeX's memory you used:
  2606 strings out of 493488
  34172 string characters out of 3141326
- 93186 words of memory out of 3000000
+ 94186 words of memory out of 3000000
  5856 multiletter control sequences out of 15000+200000
  24510 words of font info for 60 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  37i,8n,24p,537b,323s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/loca
-l/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/
-texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/te
-xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texli
-ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/
-2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
-012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/201
-2/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2012/te
-xmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2012/texmf-dist
-/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/typ
-e1/urw/times/utmr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/tim
-es/utmri8a.pfb>
-Output written on report.pdf (2 pages, 206760 bytes).
+{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.e
+nc}</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex
+9.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.
+pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pf
+b></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><
+/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></us
+r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
+/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/l
+ocal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/loc
+al/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local
+/texlive/2012/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive
+/2012/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2012/texm
+f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2012/texmf-dist/fon
+ts/type1/urw/times/utmri8a.pfb>
+Output written on report.pdf (3 pages, 209677 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
- 53 compressed objects within 1 object stream
+ 79 PDF objects out of 1000 (max. 8388607)
+ 55 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
