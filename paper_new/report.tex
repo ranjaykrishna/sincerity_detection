@@ -19,7 +19,7 @@
 \address{{\small \tt siddj@stanford.edu, rak248@stanford.edu, gcarotti@stanford.edu}\\
 $^\ast$Department of Statistics, Stanford University \\
   $^\ddagger$Department of Computer Science, Stanford University\\
-  $^\mp$ Symbolic Systems, Stanford University\\
+  $^\mp$Symbolic Systems, Stanford University\\
 }
 \maketitle
 
@@ -105,18 +105,6 @@ We use the LIWC software to classify words into specific topic groups like \text
 \subsection{Feature Normalization}
 Before we use the features in our model, we normalize the relevant lexical feature with the total word count in the conversation. We then normalize all the features such that they all have zero mean and unit variance.
 
-\section{Exploratory Analysis}
-Before attempting to classify speakers as funny or not, we examine the underlying dimensions along which the data varies.  To do, so we use exploratory factor analysis. To determine the number of factors, we use a scree test and various non-graphical measures, including parallel analysis and an optimal coordinates test, as described in \cite{hay}.  We find an optimal number of factors $k = 5$ for both males and females, conducted separately.  Figure~\ref{scree} shows the two scree plots.
-
-\begin{figure}[h]
-\includegraphics[width = 3.8cm]{graphics/ScreeFem.png}
-\includegraphics[width = 3.8cm]{graphics/ScreeMale.png}
-\caption{{\it Determining Number of Factors}\label{scree}}  
-\label{scree}
-\end{figure}
-
-Interestingly, although we find that the various factors for male and female speech are similar, they explain different amounts of variation in the data.  For males, the first factor reflects high intensity values and low intensity variation, explaining 18\% of the variation in the male prosodic data.  For females, the fifth and final factor had very similar loadings, only explaining 12\% of the variation in the data.  For females, variation in intensity was one of the most important factors, accounting for 17\% of variation in the data, whereas for males, variation in intensity only accounted for 10\% of the variation in the data.  It may be interesting in the future to investigate how sources of variation in prosody differ across genders and contexts.  
-
 \begin{table*} [t]
 \centering
 \begin{center}
@@ -151,6 +139,18 @@ Female & Both & Both & 0.64 & 0.59 & 0.63 & 0.58 & 0.60 & 0.60 & 0.63 & 0.60\\
 \end{center}
 \label{table:results}
 \end{table*}
+
+\section{Exploratory Analysis}
+Before attempting to classify speakers as funny or not, we examine the underlying dimensions along which the data varies.  To do, so we use exploratory factor analysis. To determine the number of factors, we use a scree test and various non-graphical measures, including parallel analysis and an optimal coordinates test, as described in \cite{hay}.  We find an optimal number of factors $k = 5$ for both males and females, conducted separately.  Figure~\ref{scree} shows the two scree plots.
+
+\begin{figure}[h]
+\includegraphics[width = 3.8cm]{graphics/ScreeFem.png}
+\includegraphics[width = 3.8cm]{graphics/ScreeMale.png}
+\caption{{\it Determining Number of Factors}\label{scree}}  
+\label{scree}
+\end{figure}
+
+Interestingly, although we find that the various factors for male and female speech are similar, they explain different amounts of variation in the data.  For males, the first factor reflects high intensity values and low intensity variation, explaining 18\% of the variation in the male prosodic data.  For females, the fifth and final factor had very similar loadings, only explaining 12\% of the variation in the data.  For females, variation in intensity was one of the most important factors, accounting for 17\% of variation in the data, whereas for males, variation in intensity only accounted for 10\% of the variation in the data.  It may be interesting in the future to investigate how sources of variation in prosody differ across genders and contexts.  
 
 \section{Evaluation Approach}
 
@@ -263,13 +263,12 @@ The SpeedDate dataset we use also contains ratings of people's intelligence, sin
 
 Adding another source of features, such as video from video speed dates is another extension to this project. It would be insightful to see how the contribution of the current features will change if visual features are also added.
 
-\section{Conclusions}
-
+\section{Conclusion}
+In this paper, we evaluate the perceptions of two separate characteristics, funny and courteous, in short meetings like speed dates. Our initial factor analysis of the features show clear distinctions between variations captured amongst males and females. We use different classifiers and obtain a 74\% and 64\% accuracy when predicting funny for males and females respectively. Furthermore, we attain 76\% and 63\% accuracy when predicting courteous for the same genders. Again, while analyzing the features that correspond to the highest weights in our classifiers, we see a distinct different between males and females. Models that train using one gender perform better than a model that uses features from both genders. Finally, we see that male prosody tend to be more revealing about their perceptions than female prosody.
 
 \section{Acknowledgements}
 We thank Dan Jurafsky for giving us access to the Speed Dating Dataset and for his continued guidance during this project.
 
-\newpage
 %
 \eightpt
 \bibliographystyle{IEEEtran}
