@@ -49,38 +49,6 @@ We build our own models upon the previously conducted research on the same datas
 There is a large literature on detecting social meaning.  Ang et al. (2002) investigate the detection of annoyance and frustration.  Lee \& Narayanan (2002) discuss the classification of positive and negative emotion.
 Ranganath et al. (2013) use similar features, extracted from the same data, to predict the labels of awkwardness, friendliness, flirtatiousness, and assertiveness, finding that prosodic and linguistic features can indeed predict these labels quite well \cite{jurafsky}.  In addition, they find that the mot relevant predictors vary significantly across labels and genders.  Ranganath et al. (2009) find that using stacked autoencoders to find low-dimension representations of the lexical data significantly improves prediction accuracies \cite{ranganath}.   
 
-\section{The SpeedDate Dataset} We utilize the SpeedDate dataset introduced by \cite{jurafsky} to build our model. The dataset contains approximately 1100 heterosexual 4-minute speed dates. Each date is stored as a wav file recording of the speed date along with text files of the dates annotations. On average, each date contains 
-812 words, with an average of 406 words per speaker. These worded are divided into an average of 93 turns per date where the speaker changes to the other.
-
-\subsection{Feature Extraction}
-We use OpenSMILE to extract Prosodic features from audio files of the speed date. Lexical features are extracted from the transcripts with the help of the LIWC dictionary.
-
-\subsubsection{Prosodic Feature}
-Prosodic features describe the speech of the speaker. In our model, we include features such as \textit{F0, intensity, RMS Amplitute, turn duration} and \textit{pitch}. For each of these different features, we calculate the \textit{min, max, standard deviation (SD), range, sd sd} and \textit{mean}.
-
-\subsubsection{Lexical Feature}
-Using LIWC, introduced by \cite{pennebaker}, we extract \textit{hedge words} like \textit{sort of} and \textit{I guess} that indicate uncertainty. We also gather \textit{meta} words that represent common words in the given speed date scenario and \textit{academic} words like \textit{PhD} and \textit{research}. Finally, we record occurrences of discourse markers.
-
-\subsubsection{LIWC Feature}
-We use the LIWC software to classify words into specific topic groups like \textit{love, hate, food, negate} and \textit{drink}. We count the word occurrences within each speed date for each of these word topics.
-
-\subsubsection{Accomodation Feature}
-\cite{natale}, \cite{ireland} and \cite{levitan} demonstrate through their work the convergence of vocal intensities between interlocutors. To capture this convergence, we extract features from a speaker that accommodate the previous speaker's speech. These features include the \textit{Rate of Speech} of the two speakers over time, the number of \textit{functional} and \textit{content} words also used in the other's previous turn and \textit{laughter} that immediately proceeds the other's laugh.
-
-\subsection{Feature Normalization}
-Before we use the features in our model, we normalize the relevant lexical feature with the the total word count in the conversation. We then normalize all the features such that they all have zero mean and unit variance.
-
-\section{Exploratory Analysis}
-Before attempting to classify speakers as funny or not, we examine the underlying dimensions along which the data varies.  To do, so we use exploratory factor analysis. To determine the number of factors, we use a scree test and various non-graphical measures, including parallel analysis and an optimal coordinates test, as described in (CITE).  We find an optimal number of factors $k = 5$ for both males and females, conducted separately.  Figure~\ref{scree} shows the two scree plots.
-
-\begin{figure}[h]
-\includegraphics[width = 3.8cm]{graphics/ScreeFem.png}
-\includegraphics[width = 3.8cm]{graphics/ScreeMale.png}
-\caption{{\it Determining Number of Factors}\label{scree}}  
-\label{scree}
-\end{figure}
-
-
 \begin{table*} [t]
 \begin{small}
 \centering
@@ -120,20 +88,40 @@ Before attempting to classify speakers as funny or not, we examine the underlyin
 \end{small}
 \end{table*}
 
+\section{The SpeedDate Dataset} We utilize the SpeedDate dataset introduced by \cite{jurafsky} to build our model. The dataset contains approximately 1100 heterosexual 4-minute speed dates. Each date is stored as a wav file recording of the speed date along with text files of the dates annotations. On average, each date contains 
+812 words, with an average of 406 words per speaker. These worded are divided into an average of 93 turns per date where the speaker changes to the other.
+
+\subsection{Feature Extraction}
+We use OpenSMILE to extract Prosodic features from audio files of the speed date. Lexical features are extracted from the transcripts with the help of the LIWC dictionary.
+
+\subsubsection{Prosodic Feature}
+Prosodic features describe the speech of the speaker. In our model, we include features such as \textit{F0, intensity, RMS Amplitute, turn duration} and \textit{pitch}. For each of these different features, we calculate the \textit{min, max, standard deviation (SD), range, sd sd} and \textit{mean}.
+
+\subsubsection{Lexical Feature}
+Using LIWC, introduced by \cite{pennebaker}, we extract \textit{hedge words} like \textit{sort of} and \textit{I guess} that indicate uncertainty. We also gather \textit{meta} words that represent common words in the given speed date scenario and \textit{academic} words like \textit{PhD} and \textit{research}. Finally, we record occurrences of discourse markers.
+
+\subsubsection{LIWC Feature}
+We use the LIWC software to classify words into specific topic groups like \textit{love, hate, food, negate} and \textit{drink}. We count the word occurrences within each speed date for each of these word topics.
+
+\subsubsection{Accomodation Feature}
+\cite{natale}, \cite{ireland} and \cite{levitan} demonstrate through their work the convergence of vocal intensities between interlocutors. To capture this convergence, we extract features from a speaker that accommodate the previous speaker's speech. These features include the \textit{Rate of Speech} of the two speakers over time, the number of \textit{functional} and \textit{content} words also used in the other's previous turn and \textit{laughter} that immediately proceeds the other's laugh.
+
+\subsection{Feature Normalization}
+Before we use the features in our model, we normalize the relevant lexical feature with the the total word count in the conversation. We then normalize all the features such that they all have zero mean and unit variance.
+
+\section{Exploratory Analysis}
+Before attempting to classify speakers as funny or not, we examine the underlying dimensions along which the data varies.  To do, so we use exploratory factor analysis. To determine the number of factors, we use a scree test and various non-graphical measures, including parallel analysis and an optimal coordinates test, as described in (CITE).  We find an optimal number of factors $k = 5$ for both males and females, conducted separately.  Figure~\ref{scree} shows the two scree plots.
+
+\begin{figure}[h]
+\includegraphics[width = 3.8cm]{graphics/ScreeFem.png}
+\includegraphics[width = 3.8cm]{graphics/ScreeMale.png}
+\caption{{\it Determining Number of Factors}\label{scree}}  
+\label{scree}
+\end{figure}
+
 Interestingly, although we find that the various factors for male and female speech are similar, they explain different amounts of variation in the data.  For males, the first factor reflects high intensity values and low intensity variation, explaining   
 
-\section{Evaluation Approach}
-
-\subsection{Methodology}
-We divide the dataset into two separate groups based on gender. For each gender, we train a classifier for detecting the perception of funny and courteous characteristics.  
-
-We create a training set for a given characteristic for a given gender by splitting the dataset into deciles. We use the top decile as positive and the bottom decile as negative examples. 
-
-\subsection{Classifiers}
-We start by using an SVM with a linear kernel. To improve our classifications, we next enforce an L1 norm on the SVM to compensate for the large number of lexical and prosodic features we extract. In case our decision boundaries are non-linear, we also train a RBF kernelized SVM. However, we lose interpretability of the features by using an RBF. So, we train a fourth Adaboost Classifier with decision stumps of unary depth to maintain interpretability while also allowing for a non-linear decision boundary. 
-
-\section{Classification Results}
-\begin{table*} [t]
+\begin{table*}[t]
 \centering
 \begin{center}
 \vspace{2mm}
@@ -169,6 +157,17 @@ We start by using an SVM with a linear kernel. To improve our classifications, w
 \label{table:results}
 \end{table*}
 
+\section{Evaluation Approach}
+
+\subsection{Methodology}
+We divide the dataset into two separate groups based on gender. For each gender, we train a classifier for detecting the perception of funny and courteous characteristics.  
+
+We create a training set for a given characteristic for a given gender by splitting the dataset into deciles. We use the top decile as positive and the bottom decile as negative examples. 
+
+\subsection{Classifiers}
+We start by using an SVM with a linear kernel. To improve our classifications, we next enforce an L1 norm on the SVM to compensate for the large number of lexical and prosodic features we extract. In case our decision boundaries are non-linear, we also train a RBF kernelized SVM. However, we lose interpretability of the features by using an RBF. So, we train a fourth Adaboost Classifier with decision stumps of unary depth to maintain interpretability while also allowing for a non-linear decision boundary. 
+
+\section{Classification Results}
 First, we run our four classifiers on our prosodic features only.  Despite only looking at acoustic features of these conversations, we achieve promising results -- an accuracy of 71.2\% for courteousness and 69.8\% for funniness.  These results are shown in Table~\ref{table:results}
 
 \section{Analysis}
@@ -212,7 +211,7 @@ Since Adaboost learns different classifier each time, we perform a 10 fold featu
 \centering
 \begin{center}
 \vspace{2mm}
-\begin{tabular}{c l l l l l l l l}
+\begin{tabular}{c p{5em} p{5em} p{5em} p{5em} p{5em} p{5em} p{5em} p{5em}}
 \hline
 \multicolumn{1}{l}{\#} & 
 \multicolumn{4}{c}{Funny} &
