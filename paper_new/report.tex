@@ -46,10 +46,10 @@ Thanks to the detailed and insightful research conducted by R. Ranganath et al. 
 We build our own models upon the previously conducted research on the same dataset, and apply the same techniques in order to detect stances such as courteousness, sincerity, and humor.  
 
 \section{Related Works}
-Ranganath et al. (2013) use similar features, extracted from the same data, to predict the labels of awkwardness, friendliness, flirtatiousness, and assertiveness, finding that prosodic and linguistic features can indeed predict these labels quite well \cite{ranganath}.  In addition, they find that the mot relevant predictors vary significantly across labels and genders.  Ranganath et al. (2009) find that using stacked autoencoders to find low-dimension representations of the lexical data significantly improves prediction accuracies \cite{ranganath2}.   
+There is a large literature on detecting social meaning.  Ang et al. (2002) investigate the detection of annoyance and frustration.  Lee \& Narayanan (2002) discuss the classification of positive and negative emotion.
+Ranganath et al. (2013) use similar features, extracted from the same data, to predict the labels of awkwardness, friendliness, flirtatiousness, and assertiveness, finding that prosodic and linguistic features can indeed predict these labels quite well \cite{jurafsky}.  In addition, they find that the mot relevant predictors vary significantly across labels and genders.  Ranganath et al. (2009) find that using stacked autoencoders to find low-dimension representations of the lexical data significantly improves prediction accuracies \cite{ranganath}.   
 
-\section{The SpeedDate Dataset}
-We utilize the SpeedDate dataset introduced by \cite{jurafsky} to build our model. The dataset contains approximately 1100 heterosexual 4-minute speed dates. Each date is stored as a wav file recording of the speed date along with text files of the dates annotations. On average, each date contains 
+\section{The SpeedDate Dataset} We utilize the SpeedDate dataset introduced by \cite{jurafsky} to build our model. The dataset contains approximately 1100 heterosexual 4-minute speed dates. Each date is stored as a wav file recording of the speed date along with text files of the dates annotations. On average, each date contains 
 812 words, with an average of 406 words per speaker. These worded are divided into an average of 93 turns per date where the speaker changes to the other.
 
 \subsection{Feature Extraction}
@@ -80,35 +80,36 @@ Before attempting to classify speakers as funny or not, we examine the underlyin
 \label{scree}
 \end{figure}
 
+\begin{small}
 \begin{table*} [t]
 \centering
 \begin{center}
 \vspace{2mm}
 \begin{tabular}{l | l l l l l l l l l l}
 \hline
-\multicolumn{1}{l}{\#} & 
+\multicolumn{1}{l}{} & 
 \multicolumn{5}{c}{Male} &
 \multicolumn{5}{c}{Female}\\
 \cmidrule(r){2-6}
 \cmidrule(r){7-11}
  Variable& Intens. & PitchMax& PitchMin & TurnDur & Intens.Var  &  PitchMax & Intens.Var  &  TurnDur  & PitchMin & Intens.Mean\\
  \hline
- tndur.mean & 0.03  & 0.26  & -0.22 & 0.94 & -0.05 & 0.17 & -0.03 & 0.97 & -0.15 & 0.04\\
- pmin.mean & 0.16 & -0.23 & 0.85 & -0.24 & 0.11 & -0.21 & -0.07 & -0.21 & 0.89 & 0.07 \\
- pmax.mean& 0.13& 0.94 & 0.01 & 0.23 & 0.0 & 0.92 & 0.03 & 0.23 & -0.1 & 0.05 \\
- pmean.mean& 0.18 & 0.53 & 0.69 & -0.13 & 0.07 & 0.72 & -0.02 & 0.02 & 0.48 & 0.19 \\
- psd.mean& -0.12 & 0.71 & -0.38& -0.06 & 0.01 & 0.88 & 0.09 & -0.11 & -0.28 & -0.05\\
+ tndur.mean & 0.03  & 0.26  & -0.22 & \textbf{0.94} & -0.05 & 0.17 & -0.03 & \textbf{0.97} & -0.15 & 0.04\\
+ pmin.mean & 0.16 & -0.23 & \textbf{0.85} & -0.24 & 0.11 & -0.21 & -0.07 & -0.21 & \textbf{0.89} & 0.07 \\
+ pmax.mean& 0.13& \textbf{0.94} & 0.01 & 0.23 & 0.0 & \textbf{0.92} & 0.03 & 0.23 & -0.1 & 0.05 \\
+ pmean.mean& 0.18 & 0.53 & \textbf{0.69} & -0.13 & 0.07 & 0.72 & -0.02 & 0.02 & 0.48 & 0.19 \\
+ psd.mean& -0.12 & \textbf{0.71} & -0.38& -0.06 & 0.01 & \textbf{0.88} & 0.09 & -0.11 & -0.28 & -0.05\\
  imin.mean& 0.54 & 0.09 & 0.13 & -0.27 & -0.21 & -0.02 & -0.75 & -0.06 & 0.07 & 0.46\\
- imax.mean& 0.93& 0.13 & 0.06& 0.19 & 0.0 & 0.1 & -0.16 & 0.06 & 0.03 & 0.9\\
- imean.mean& 0.99& 0.05& 0.12& 0.06 & -0.02 & 0.07 & -0.48 & -0.01 & 0.1 & 0.87\\
- tndur.sd& 0.00& 0.12& -0.1 & 0.87 & -0.04 & 0.05 & 0.04 & 0.87 & -0.04 & 0.03\\
- pmin.sd & 0.01& -0.03 & 0.83 & -0.07 & 0.16 & -0.06 & 0.02 & -0.09 & 0.87 & 0.02\\
- pmax.sd& -0.12 & -0.78 & -0.09 & -0.17 & 0.08  & -0.67 & 0.01 & -0.1 & 0 & -0.05\\
+ imax.mean& \textbf{0.93}& 0.13 & 0.06& 0.19 & 0.0 & 0.1 & -0.16 & 0.06 & 0.03 & \textbf{0.9}\\
+ imean.mean& \textbf{0.99}& 0.05& 0.12& 0.06 & -0.02 & 0.07 & -0.48 & -0.01 & 0.1 & \textbf{0.87}\\
+ tndur.sd& 0.00& 0.12& -0.1 & \textbf{0.87} & -0.04 & 0.05 & 0.04 & \textbf{0.87} & -0.04 & 0.03\\
+ pmin.sd & 0.01& -0.03 & \textbf{0.83} & -0.07 & 0.16 & -0.06 & 0.02 & -0.09 & \textbf{0.87} & 0.02\\
+ pmax.sd& -0.12 & \textbf{-0.78} & -0.09 & -0.17 & 0.08  & \textbf{-0.67} & 0.01 & -0.1 & 0 & -0.05\\
  pmean.sd& -0.09& -0.04 & 0.13 & -0.16 & 0.27 & 0.11 & 0.11 & -0.3 & 0.3 & 0.03\\
  psd.sd& -0.20& -0.42 & -0.01 & -0.28 & 0.21 & -0.27 & 0.06 & -0.33 & 0.12 & -0.01\\
  imin.sd& 0.07 & 0.00 & 0.02 & 0.02 & 0.36 & 0.0 & 0.36 & 0.03 & 0.14 & 0.02\\
- imax.sd& -0.65 & -0.08 & 0.07 & -0.06 & 0.66 & 0.0 & 0.87 & -0.12 & -0.07 & -0.35\\
- imean.sd& -0.27 & -0.09 & 0.12 & -0.01 & 0.95 & 0.04 & 0.97 & -0.14 & -0.11 & -0.12\\
+ imax.sd& \textbf{-0.65} & -0.08 & 0.07 & -0.06 & \textbf{0.66} & 0.0 & \textbf{0.87} & -0.12 & -0.07 & -0.35\\
+ imean.sd& -0.27 & -0.09 & 0.12 & -0.01 & \textbf{0.95} & 0.04 & \textbf{0.97} & -0.14 & -0.11 & -0.12\\
  Var Explained& 0.18 & 0.16 & 0.13 & 0.13 & 0.10 & 0.17 & 0.17 & 0.13 & 0.13 & 0.12\\
  \hline
 \end{tabular}
@@ -116,6 +117,7 @@ Before attempting to classify speakers as funny or not, we examine the underlyin
 \end{center}
 \label{table:results}
 \end{table*}
+\end{small}
 
 Interestingly, although we find that the various factors for male and female speech are similar, they explain different amounts of variation in the data.  For males, the first factor reflects high intensity values and low intensity variation, explaining   
 
@@ -147,7 +149,10 @@ We start by using an SVM with a linear kernel. To improve our classifications, w
 &  & & SVM RBF & SVM Lin & AdaBoost & L1SVM & SVM RBF & SVM Lin & AdaBoost & L1SVM\\
 \hline
  Male & Both & Prosody & 0.70 & 0.69 & 0.66 & 0.65 & 0.71 & 0.68 & 0.70 & 0.66\\
- Male & Self & Lexical & 0.64 & 0.59 & 0.59 & 0.61 & 0.63 & 0.61 & 0.64 & 0.63\\ Male & Both & Lexical & 0.63 & 0.57 & 0.61 & 0.55 & 0.65 & 0.61 & 0.65 & 0.65\\
+ Male & Self & Lexical & 0.64 & 0.59 & 0.59 & 0.61 & 0.63 & 0.61 & 0.64 & 0.63\\
+ Male & Other & Lexical & 0.57 & 0.55 & 0.6 & 0.58 & 0.63 & 0.55 & 0.60 & 0.64\\ 
+ Male & Both & Lexical & 0.63 & 0.57 & 0.61 & 0.55 & 0.65 & 0.61 & 0.65 & 0.65\\
+    
 \\
  \\
   \\
@@ -249,5 +254,8 @@ initiation and stability``, in Psychological Science 22 (1), 39, 2011
 
 \bibitem{ranganath}Ranganath, R., Jurafsky, D., McFarland, D. ``It's Not You, It's Me'', in Proceedings of the 2009 Conference on Empirical Methods in Natural Language Processing.
 
+\bibitem{lee} Lee, C., Narayanan, S. and Pieraccini, R. ``Combining acoustic and language information for emotion recognition.'' INTERSPEECH. 2002.
+
+\bibitem{ang} Ang, J. , et al. ''Prosody-based automatic detection of annoyance and frustration in human-computer dialog.'' INTERSPEECH. 2002.
 \end{thebibliography}
 \end{document}
