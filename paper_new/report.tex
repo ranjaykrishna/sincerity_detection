@@ -80,8 +80,9 @@ Before attempting to classify speakers as funny or not, we examine the underlyin
 \label{scree}
 \end{figure}
 
-\begin{small}
+
 \begin{table*} [t]
+\begin{small}
 \centering
 \begin{center}
 \vspace{2mm}
@@ -116,8 +117,8 @@ Before attempting to classify speakers as funny or not, we examine the underlyin
 \caption{\label{table:Factor Analysis} {\it  Factor Analysis Loadings Matrices}}
 \end{center}
 \label{table:results}
-\end{table*}
 \end{small}
+\end{table*}
 
 Interestingly, although we find that the various factors for male and female speech are similar, they explain different amounts of variation in the data.  For males, the first factor reflects high intensity values and low intensity variation, explaining   
 
@@ -203,6 +204,37 @@ Since Adaboost learns different classifier each time, we perform a 10 fold featu
  \hline
 \end{tabular}
 \caption{\label{table:adaboost} {\it  Feature Splits with Highest Weights in Adaboost.}}
+\end{center}
+\label{table:results}
+\end{table*}
+
+\begin{table*} [t]
+\centering
+\begin{center}
+\vspace{2mm}
+\begin{tabular}{c l l l l l l l l}
+\hline
+\multicolumn{1}{l}{\#} & 
+\multicolumn{4}{c}{Funny} &
+\multicolumn{4}{c}{Courteous}\\
+\cmidrule(r){2-5}
+\cmidrule(r){6-9}
+ & \multicolumn{2}{c}{Lexical} & \multicolumn{2}{c}{Prosodic}  & \multicolumn{2}{c}{Lexical} & \multicolumn{2}{c}{Prosodic}\\
+ & Male & Female & Male & Female & Male & Female & Male & Female\\
+ \hline
+1 & excl & Other LaughAcc & pquan mean & Other tndur SD & syll turn & like & pquan mean & Other prange mean\\
+2 & pronoun & Other hear & Other pmean mean & Other imin SD & probably & syll turn & iquan SD & Other pslnjmp mean\\
+3 & Other achieve & Other youKnow & Other pquan mean & Other iquan mean & Other anx & Other LaughAcc & Other imin SD & imean SD\\
+4 & Other see & kindOf & iquan mean & pquan SD & Other like & Other FuncAcc & imax mean & Other pslope mean\\
+5 & achieve & Other program & Other pslope mean & Other pmean SD & aLittle & sad & Other pmin SD & ptmin SD\\
+6 & Other youKnow & like & Other imin SD & pmean mean & pronoun & Other youKnow & Other imean SD & ptmax SD\\
+7 & Other like & Other iThink & Other prange SD & tndur SD & they & Other friend & imean mean & pquan mean\\
+8 & Other you & syll turn & Other pslnjmp mean & pmean SD & humans & relativ & itmin SD & Other imin mean\\
+9 & shehe & Other see & tndur mean & Other tndur mean & work & posemo & imin mean & imax SD\\
+10 & cogmech & Other affect & imin SD & Other ptmax mean & shehe & Other future & imin SD & imax mean\\
+ \hline
+\end{tabular}
+\caption{\label{table:adaboost} {\it  Gender Based Feature Splits with Highest Weights in Adaboost.}}
 \end{center}
 \label{table:results}
 \end{table*}
