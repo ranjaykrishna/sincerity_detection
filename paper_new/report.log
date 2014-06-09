@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.5.15)  8 JUN 2014 20:04
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.5.15)  8 JUN 2014 23:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**report.tex A
+**report.tex
 (./report.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 2 languages loaded.
@@ -166,9 +166,6 @@ LaTeX Warning: Label `table:results' multiply defined.
 
 LaTeX Warning: Label `table:results' multiply defined.
 
-
-LaTeX Warning: Label `table:results' multiply defined.
-
 )
 \openout1 = `report.aux'.
 
@@ -275,10 +272,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
@@ -287,33 +281,31 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: graphics/ScreeFem.png Graphic file (type png)
 
 <use graphics/ScreeFem.png>
-Package pdftex.def Info: graphics/ScreeFem.png used on input line 77.
+Package pdftex.def Info: graphics/ScreeFem.png used on input line 78.
 (pdftex.def)             Requested size: 108.12054pt x 101.50427pt.
 
 <graphics/ScreeMale.png, id=12, 508.90125pt x 477.785pt>
 File: graphics/ScreeMale.png Graphic file (type png)
 
 <use graphics/ScreeMale.png>
-Package pdftex.def Info: graphics/ScreeMale.png used on input line 78.
+Package pdftex.def Info: graphics/ScreeMale.png used on input line 79.
 (pdftex.def)             Requested size: 108.12054pt x 101.50427pt.
 
-Overfull \hbox (41.18517pt too wide) in paragraph at lines 88--116
+Overfull \hbox (41.18517pt too wide) in paragraph at lines 89--117
  [] 
  []
 
 
-Overfull \hbox (27.1815pt too wide) in paragraph at lines 139--166
+Overfull \hbox (27.1815pt too wide) in paragraph at lines 140--161
  [] 
  []
 
 [2 <./graphics/ScreeFem.png (PNG copy)> <./graphics/ScreeMale.png (PNG copy)>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3]
+[3]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 240.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 237.
 
-Underfull \hbox (badness 1231) in paragraph at lines 242--244
+Underfull \hbox (badness 1231) in paragraph at lines 239--241
 []\OT1/ptm/m/n/8 Ranganatha, R., Ju-raf-sky, D., Mc-Far-land, D.A., ``De-tect-i
 ng
  []
@@ -321,23 +313,24 @@ ng
 Missing character: There is no Ð in font ptmr7t!
 Missing character: There is no Õ in font ptmr7t!
 
-Underfull \hbox (badness 1062) in paragraph at lines 259--260
+Underfull \hbox (badness 1062) in paragraph at lines 256--257
 \OT1/ptm/m/n/8 and frus-tra-tion in human-computer di-a-log.'' IN-TER-SPEECH.
  []
 
+Missing character: There is no ¿ in font ptmr7t!
 [4] (./report.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2671 strings out of 495028
- 34721 string characters out of 6181497
- 112651 words of memory out of 5000000
- 5820 multiletter control sequences out of 15000+600000
+ 2677 strings out of 495028
+ 34764 string characters out of 6181497
+ 110678 words of memory out of 5000000
+ 5826 multiletter control sequences out of 15000+600000
  24510 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,8n,26p,883b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,8n,26p,1660b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/f
@@ -346,7 +339,7 @@ e1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (4 pages, 166987 bytes).
+Output written on report.pdf (4 pages, 169866 bytes).
 PDF statistics:
  52 PDF objects out of 1000 (max. 8388607)
  35 compressed objects within 1 object stream
