@@ -52,7 +52,7 @@ library(nFactors)
 ev <- eigen(cor(fa_data))
 ap <- parallel(subject=nrow(fa_data),var=ncol(fa_data),rep=100,cent=.05)
 nS <- nScree(x=ev$values, aparallel=ap$eigen$qevpea)
-plotnScree(nS, main = "Determining Number of Factors for Males")
+plotnScree(nS, main = '') 
 
 fit <- factanal(fa_data, 5, rotation = 'varimax')
 l_male <- fit$loadings
@@ -77,7 +77,7 @@ library(nFactors)
 ev <- eigen(cor(fa_data))
 ap <- parallel(subject=nrow(fa_data),var=ncol(fa_data),rep=100,cent=.05)
 nS <- nScree(x=ev$values, aparallel=ap$eigen$qevpea)
-plotnScree(nS, main = "Determining Number of Factors for Females")
+plotnScree(nS, main = "") 
 
 fit <- factanal(fa_data, 5, rotation = 'varimax')
 l_fem <- fit$loadings
@@ -131,13 +131,13 @@ SELF_LEX_COLS = 59:153
 OTHER_LEX_COLS = 35:129
 NUM_LABS = 14
 
-#tot_dat = cbind(dat[, LAB_COLS], dat[, SELF_PROS_COLS], dat[,SELF_LEX_COLS], other_features)
+tot_dat = cbind(dat[, LAB_COLS], dat[, SELF_PROS_COLS], dat[,SELF_LEX_COLS], other_features)
 #Just self pros
 #tot_dat = cbind(dat[, LAB_COLS], dat[, SELF_PROS_COLS])
 #Just other pros
 #tot_dat = cbind(dat[, LAB_COLS], other_features[, OTHER_PROS_COLS])
 #Both people, but pros only
-tot_dat = cbind(dat[, LAB_COLS], dat[, PROS_COLS], other_features[, OTHER_PROS_COLS])
+#tot_dat = cbind(dat[, LAB_COLS], dat[, PROS_COLS], other_features[, OTHER_PROS_COLS])
 
 #Testing Adaboost
 
@@ -157,8 +157,8 @@ female_dat = tot_dat[dat$otherid < dat$selfid,]
 male_factors = factors[dat$selfid < dat$otherid,]
 female_factors = factors[dat$otherid < dat$selfid,]
 
-cur_dat = male_dat
-cur_factors = male_factors
+cur_dat = female_dat
+cur_factors = female_factors
 
 keep_rows = complete.cases(cur_dat)
 cur_dat = cur_dat[keep_rows,]
@@ -168,12 +168,6 @@ cur_factors = scale(cur_factors, center = TRUE, scale = TRUE)
 cur_factors = (cur_factors[, complete.cases(t(as.matrix(cur_factors)))])
 
 #Dimensionality Reduction for Lex Features
-
-
-
-
-
-
 
 #Factor Classifier
 #First get male factor values
@@ -193,7 +187,79 @@ if(FALSE){
 }
 
 
-#Funniness Only
+#Funniness and Awkwardness Only
+#Get all Labels
+library(e1071)
+library(ada)
+library(LiblineaR)
+final_scores <- matrix(rep(0, 2 * 4), nrow = 2)
+rownames(final_scores) <- c("Funny", "Courteous")
+colnames(final_scores) <- c("SVM_RBF", "SVM_Linear", "AdaBoost", "LibliearR_with_L1")
+label_cols = c(which(colnames(cur_dat) == 'o_funny'), which(colnames(cur_dat)  == 'o_crteos'))
+for(col in 1:2){ #Iterate through output columns
+  print(paste("Label: ", colnames(cur_dat)[label_cols[col]]))
+  gt_sinc <- cur_dat[, label_cols[col]] #Get right col
+  q_sinc <- quantile(gt_sinc, probs = seq(0, 1, 0.1))
+  ones = which(gt_sinc >= q_sinc[10])#Top and Bottom Decile
+  zeros = which(gt_sinc <= q_sinc[2])
+  gt = rep(0, length(ones) + length(zeros)) #Ground Truth
+  gt[1:length(ones)] = 1
+  split_factors <- cur_factors[c(ones, zeros), ]
+  #split  actors <- scale(split_factors, center = TRUE, scale = TRUE) #Center and scale to unit-variance
+  outcome = as.factor(gt)
+  scores = matrix(rep(0, 10 * 4), nrow = 10) #4 is number of methods
+  for(iter in 1:10){ #Do 5-fold CV 10 times
+    print(paste("Iteration: ", toString(iter)))
+    k = 5
+    reorder = sample(1:nrow(split_factors), nrow(split_factors))
+    split_factors = split_factors[reorder,]
+    outcome = outcome[reorder]
+    n = nrow(split_factors)
+    per_sample = as.integer(n/5)
+    accs_ada <- rep(0, k)
+    accs_svm_rbf <- rep(0, k)
+    accs_svm_linear <- rep(0, k)
+    accs_liblineaR <- rep(0, k)
+    for(i in 1:k){      
+      #print(paste(toString(i), '...'))
+      sample_rows_start = (i - 1) * per_sample + 1  
+      sample_rows_end = min(n, sample_rows_start + per_sample - 1)
+      sample_rows = (sample_rows_start):(sample_rows_end)
+      #sample_rows = sample(1:nrow(split_factors), nrow(split_factors)/k)
+      predict_train = split_factors[-sample_rows,]
+      predict_test = split_factors[sample_rows,]
+      outcome_train = outcome[-sample_rows]
+      outcome_test = outcome[sample_rows]
+      
+      #SVM with radial kernel
+      svm.mod <- svm(predict_train, outcome_train, kernel = 'radial')
+      test_pred <- predict(svm.mod, predict_test)
+      accs_svm_rbf[i] = sum(test_pred == outcome_test)/length(outcome_test)
+      
+      #rf <- randomForest(predict_train, y = outcome_train, xtest = predict_test, ytest = outcome_test, ntree = 500, importance = TRUE)
+      control <- rpart.control(cp = -1, maxdepth = 14,maxcompete = 1,xval = 0)
+      ada.mod <- ada(predict_train, outcome_train, test.x = predict_test, test.y = outcome_test, control=control)
+      accs_ada[i] = sum(predict(ada.mod, data.frame(predict_test)) == outcome_test)/length(outcome_test)
+      
+      svm.mod.lin <- svm(predict_train, outcome_train, kernel = 'linear')
+      test_pred <- predict(svm.mod.lin, predict_test)
+      accs_svm_linear[i] = sum(test_pred == outcome_test)/length(outcome_test)
+      
+      lin=LiblineaR(data=predict_train,labels=outcome_train,type=6,cost=heuristicC(predict_train),bias=TRUE,verbose=FALSE)
+      test_pred <- predict(lin, predict_test)
+      accs_liblineaR[i] = sum(as.integer(unlist(test_pred)) == outcome_test)/length(outcome_test)
+    }
+    scores[iter, 1] = mean(accs_svm_rbf)
+    scores[iter, 2] = mean(accs_svm_linear)
+    scores[iter, 3] = mean(accs_ada)
+    scores[iter, 4] = mean(accs_liblineaR)
+  }
+  final_scores[col,] = apply(scores, 2, mean) #-1 is to make 1-index
+}
+write.table(final_scores, '../results/final_female_both_both.csv', sep = ';')
+
+
+#Funny Only
 library(e1071)
 library(ada)
 library(LiblineaR)

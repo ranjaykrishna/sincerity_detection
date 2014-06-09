@@ -22,10 +22,11 @@ $^\ast$Department of Statistics, Stanford University \\
   $^\mp$ Symbolic Systems, Stanford University\\
 }
 
-%
+
+
 \begin{document}
 \maketitle
-%
+
 
 \begin{abstract}
 Computationally understanding the perception of a speaker's characteristics is an important task speech processing, behavioral outcomes and dialogue systems. Our work focuses on the classification and understanding the perception of two such characteristics: courtesy and humor. We analyze ratings surveyed from the SpeedDate corpus to build models using prosodic and lexical features of the speakers. We find that lexical features like \textit{Hedge-words} and prosodic features like \textit{Intensity Min SD} are important for detecting courteous while \textit{Exclamations} and listener's \textit{Intensity} are important for funny. Using an Adaboost Classifier, we detect the funny with an accuracy of SHIT GOES HERE and courteous at SHIT GOES HERE.\\
@@ -46,43 +47,11 @@ Thanks to the detailed and insightful research conducted by R. Ranganath et al. 
 We build our own models upon the previously conducted research on the same dataset, and apply the same techniques in order to detect stances such as courteousness, sincerity, and humor.  
 
 \section{Related Works}
-There is a large literature on detecting social meaning.  Ang et al. (2002) \cite{ang} investigate the detection of annoyance and frustration.  Lee \& Narayanan (2002) \cite{lee} discuss the classification of positive and negative emotion.  Ranganath et al. (2013) use the same data set to predict the labels of awkwardness, friendliness, flirtatiousness, and assertiveness, finding that prosodic and linguistic features can indeed predict these labels quite well \cite{jurafsky}.  In addition, they find that the most relevant predictors vary significantly across labels and genders.  Ranganath et al. (2009) find that using stacked autoencoders to find low-dimension representations of the lexical data significantly significantly improves prediction accuracy \cite{ranganath}.  There is a wide literature on the study of humor, but surprisingly little of this research has studied the acoustic nature of humor -- instead choosing to focus largely on semantics.  Menninghaus et al. (2014) find that clear regard for rhyme and meter enhances the perceived humor of couplets \cite{men}.  Purandare \& Litman (2006) study differences in prosody between laughter-preceding and non-laughter-preceding statements in the situational comedy \emph{FRIENDS}\cite{pur}.  Of course, these are jokes told on a scripted telivision show, with clear breaks in dialogue for ``canned laughter.'' Here, instead of rehearsed jokes, we predict the perception of funniness based on acoustic features of conversational speech.  While there is an abundance of research on humor, very little research has been conducted on the perception of courteousness.
+There is a large literature on detecting social meaning.  Ang et al. (2002) investigate the detection of annoyance and frustration.  Lee \& Narayanan (2002) discuss the classification of positive and negative emotion.
+Ranganath et al. (2013) use similar features, extracted from the same data, to predict the labels of awkwardness, friendliness, flirtatiousness, and assertiveness, finding that prosodic and linguistic features can indeed predict these labels quite well \cite{jurafsky}.  In addition, they find that the mot relevant predictors vary significantly across labels and genders.  Ranganath et al. (2009) find that using stacked autoencoders to find low-dimension representations of the lexical data significantly improves prediction accuracies \cite{ranganath}.   
 
-Much work has also been conducted on prosodic differences between genders.  Feinberg et al. (2005) find that lower minimum pitch is associated with masculinity in males \cite{fein}, while Mairesse et al. (2007) demonstrate that variation in intensity may lead to a perception of extroversion \cite{Mair}.  Similarly, Gravano et al. (2011) show that variationin pitch may make one more likable \cite{Grav}.  Here, we find gender differences in the sources of variation in the prosodic featuers we extract.  In addition, we find that the set of features that are relevant to predicting males' prception of funniness and awkwardness are very different from the according set of features for females.
-
-\section{The SpeedDate Dataset} We utilize the SpeedDate dataset introduced by \cite{jurafsky} to build our model. The dataset contains approximately 1100 heterosexual 4-minute speed dates. Each date is stored as a wav file recording of the speed date along with text files of the dates annotations. On average, each date contains 
-812 words, with an average of 406 words per speaker. These worded are divided into an average of 93 turns per date where the speaker changes to the other.
-
-\subsection{Feature Extraction}
-We use OpenSMILE to extract Prosodic features from audio files of the speed date. Lexical features are extracted from the transcripts with the help of the LIWC dictionary.
-
-\subsubsection{Prosodic Feature}
-Prosodic features describe the speech of the speaker. In our model, we include features such as \textit{F0, intensity, RMS Amplitute, turn duration} and \textit{pitch}. For each of these different features, we calculate the \textit{min, max, standard deviation (SD), range, sd sd} and \textit{mean}.
-
-\subsubsection{Lexical Feature}
-Using LIWC, introduced by \cite{pennebaker}, we extract \textit{hedge words} like \textit{sort of} and \textit{I guess} that indicate uncertainty. We also gather \textit{meta} words that represent common words in the given speed date scenario and \textit{academic} words like \textit{PhD} and \textit{research}. Finally, we record occurrences of discourse markers.
-
-\subsubsection{LIWC Feature}
-We use the LIWC software to classify words into specific topic groups like \textit{love, hate, food, negate} and \textit{drink}. We count the word occurrences within each speed date for each of these word topics.
-
-\subsubsection{Accomodation Feature}
-\cite{natale}, \cite{ireland} and \cite{levitan} demonstrate through their work the convergence of vocal intensities between interlocutors. To capture this convergence, we extract features from a speaker that accommodate the previous speaker's speech. These features include the \textit{Rate of Speech} of the two speakers over time, the number of \textit{functional} and \textit{content} words also used in the other's previous turn and \textit{laughter} that immediately proceeds the other's laugh.
-
-\subsection{Feature Normalization}
-Before we use the features in our model, we normalize the relevant lexical feature with the the total word count in the conversation. We then normalize all the features such that they all have zero mean and unit variance.
-
-\section{Exploratory Analysis}
-Before attempting to classify speakers as funny or not, we examine the underlying dimensions along which the data varies.  To do, so we use exploratory factor analysis. To determine the number of factors, we use a scree test and various non-graphical measures, including parallel analysis and an optimal coordinates test, as described in (CITE).  We find an optimal number of factors $k = 5$ for both males and females, conducted separately.  Figure~\ref{scree} shows the two scree plots.
-
-\begin{figure}[h]
-\includegraphics[width = 3.8cm]{graphics/ScreeFem.png}
-\includegraphics[width = 3.8cm]{graphics/ScreeMale.png}
-\caption{{\it Determining Number of Factors}\label{scree}}  
-\label{scree}
-\end{figure}
-
-\begin{small}
 \begin{table*} [t]
+\begin{small}
 \centering
 \begin{center}
 \vspace{2mm}
@@ -116,11 +85,78 @@ Before attempting to classify speakers as funny or not, we examine the underlyin
 \end{tabular}
 \caption{\label{table:Factor Analysis} {\it  Factor Analysis Loadings Matrices}}
 \end{center}
-\label{table:Factors}
-\end{table*}
+\label{table:results}
 \end{small}
+\end{table*}
+
+\section{The SpeedDate Dataset} We utilize the SpeedDate dataset introduced by \cite{jurafsky} to build our model. The dataset contains approximately 1100 heterosexual 4-minute speed dates. Each date is stored as a wav file recording of the speed date along with text files of the dates annotations. On average, each date contains 
+812 words, with an average of 406 words per speaker. These worded are divided into an average of 93 turns per date where the speaker changes to the other.
+
+\subsection{Feature Extraction}
+We use OpenSMILE to extract Prosodic features from audio files of the speed date. Lexical features are extracted from the transcripts with the help of the LIWC dictionary.
+
+\subsubsection{Prosodic Feature}
+Prosodic features describe the speech of the speaker. In our model, we include features such as \textit{F0, intensity, RMS Amplitute, turn duration} and \textit{pitch}. For each of these different features, we calculate the \textit{min, max, standard deviation (SD), range, sd sd} and \textit{mean}.
+
+\subsubsection{Lexical Feature}
+Using LIWC, introduced by \cite{pennebaker}, we extract \textit{hedge words} like \textit{sort of} and \textit{I guess} that indicate uncertainty. We also gather \textit{meta} words that represent common words in the given speed date scenario and \textit{academic} words like \textit{PhD} and \textit{research}. Finally, we record occurrences of discourse markers.
+
+\subsubsection{LIWC Feature}
+We use the LIWC software to classify words into specific topic groups like \textit{love, hate, food, negate} and \textit{drink}. We count the word occurrences within each speed date for each of these word topics.
+
+\subsubsection{Accomodation Feature}
+\cite{natale}, \cite{ireland} and \cite{levitan} demonstrate through their work the convergence of vocal intensities between interlocutors. To capture this convergence, we extract features from a speaker that accommodate the previous speaker's speech. These features include the \textit{Rate of Speech} of the two speakers over time, the number of \textit{functional} and \textit{content} words also used in the other's previous turn and \textit{laughter} that immediately proceeds the other's laugh.
+
+\subsection{Feature Normalization}
+Before we use the features in our model, we normalize the relevant lexical feature with the the total word count in the conversation. We then normalize all the features such that they all have zero mean and unit variance.
+
+\section{Exploratory Analysis}
+Before attempting to classify speakers as funny or not, we examine the underlying dimensions along which the data varies.  To do, so we use exploratory factor analysis. To determine the number of factors, we use a scree test and various non-graphical measures, including parallel analysis and an optimal coordinates test, as described in (CITE).  We find an optimal number of factors $k = 5$ for both males and females, conducted separately.  Figure~\ref{scree} shows the two scree plots.
+
+\begin{figure}[h]
+\includegraphics[width = 3.8cm]{graphics/ScreeFem.png}
+\includegraphics[width = 3.8cm]{graphics/ScreeMale.png}
+\caption{{\it Determining Number of Factors}\label{scree}}  
+\label{scree}
+\end{figure}
 
 Interestingly, although we find that the various factors for male and female speech are similar, they explain different amounts of variation in the data.  For males, the first factor reflects high intensity values and low intensity variation, explaining   
+
+\begin{table*}[t]
+\centering
+\begin{center}
+\vspace{2mm}
+\begin{tabular}{l l l| l l l l l l l l}
+\hline
+\multicolumn{1}{l}{Participant} & 
+\multicolumn{1}{l}{Gender} &
+\multicolumn{1}{l}{Predictors} &
+\multicolumn{4}{c}{Funny} &
+\multicolumn{4}{c}{Courteous}\\
+\cmidrule(r){1-3}
+\cmidrule(r){4-7}
+\cmidrule(r){8-11}
+&  & & SVM RBF & SVM Lin & AdaBoost & L1SVM & SVM RBF & SVM Lin & AdaBoost & L1SVM\\
+\hline
+ Male & Both & Prosody & 0.70 & 0.69 & 0.66 & 0.65 & 0.71 & 0.68 & 0.70 & 0.66\\
+ Male & Self & Lexical & 0.64 & 0.59 & 0.59 & 0.61 & 0.63 & 0.61 & 0.64 & 0.63\\
+ Male & Other & Lexical & 0.57 & 0.55 & 0.6 & 0.58 & 0.63 & 0.55 & 0.60 & 0.64\\ 
+ Male & Both & Lexical & 0.63 & 0.57 & 0.61 & 0.55 & 0.65 & 0.61 & 0.65 & 0.65\\
+    
+\\
+ \\
+  \\
+  \\
+  \\
+ \\
+ \\
+ \\
+ \hline
+\end{tabular}
+\caption{\label{table:results} {\it  Classification Results.}}
+\end{center}
+\label{table:results}
+\end{table*}
 
 \section{Evaluation Approach}
 
@@ -133,37 +169,7 @@ We create a training set for a given characteristic for a given gender by splitt
 We start by using an SVM with a linear kernel. To improve our classifications, we next enforce an L1 norm on the SVM to compensate for the large number of lexical and prosodic features we extract. In case our decision boundaries are non-linear, we also train a RBF kernelized SVM. However, we lose interpretability of the features by using an RBF. So, we train a fourth Adaboost Classifier with decision stumps of unary depth to maintain interpretability while also allowing for a non-linear decision boundary. 
 
 \section{Classification Results}
-\begin{table*} [t]
-\centering
-\begin{center}
-\vspace{2mm}
-\begin{tabular}{l l l| l l l l l l l l}
-\hline
-\multicolumn{1}{l}{Gender} &
-\multicolumn{1}{l}{Participant} & 
-\multicolumn{1}{l}{Predictors} &
-\multicolumn{4}{c}{Funny} &
-\multicolumn{4}{c}{Courteous}\\
-\cmidrule(r){1-3}
-\cmidrule(r){4-7}
-\cmidrule(r){8-11}
-& & & SVM RBF & SVM Lin & AdaBoost & L1SVM & SVM RBF & SVM Lin & AdaBoost & L1SVM\\
-\hline
- Male & Self & Prosody & 0.71 & 0.65 & 0.67 & 0.67 & 0.75 & 0.71 & 0.71 & 0.68\\ 
- Male & Other & Prosody & 0.64 & 0.69 & 0.65 & 0.67 & 0.63 & 0.66 & 0.64 & 0.63\\
- Male & Both & Prosody & 0.70 & 0.69 & 0.66 & 0.65 & 0.71 & 0.68 & 0.70 & 0.66\\
- Male & Self & Lexical & 0.64 & 0.59 & 0.59 & 0.61 & 0.63 & 0.61 & 0.64 & 0.63\\
- Male & Other & Lexical & 0.57 & 0.55 & 0.6 & 0.58 & 0.63 & 0.55 & 0.60 & 0.64\\ 
- Male & Both & Lexical & 0.63 & 0.57 & 0.61 & 0.55 & 0.65 & 0.61 & 0.65 & 0.65\\
- Male & Both & Both & 0.74 & 0.73 & 0.68 & 0.67  & 0.74 & 65 & 0.70 & 0.69\\   
- \hline
-\end{tabular}
-\caption{\label{table:results} {\it  Classification Results.}}
-\end{center}
-\label{table:results}
-\end{table*}
-
-First, we run our four classifiers on our prosodic features only.  Despite only looking at acoustic features of these conversations, we achieve promising results -- an accuracy of 71\% for courteousness and 75\% for funniness.  These results are shown in Table~\ref{table:results}
+First, we run our four classifiers on our prosodic features only.  Despite only looking at acoustic features of these conversations, we achieve promising results -- an accuracy of 71.2\% for courteousness and 69.8\% for funniness.  These results are shown in Table~\ref{table:results}
 
 \section{Analysis}
 
@@ -202,6 +208,37 @@ Since Adaboost learns different classifier each time, we perform a 10 fold featu
 \label{table:results}
 \end{table*}
 
+\begin{table*} [t]
+\centering
+\begin{center}
+\vspace{2mm}
+\begin{tabular}{c p{5em} p{5em} p{5em} p{5em} p{5em} p{5em} p{5em} p{5em}}
+\hline
+\multicolumn{1}{l}{\#} & 
+\multicolumn{4}{c}{Funny} &
+\multicolumn{4}{c}{Courteous}\\
+\cmidrule(r){2-5}
+\cmidrule(r){6-9}
+ & \multicolumn{2}{c}{Lexical} & \multicolumn{2}{c}{Prosodic}  & \multicolumn{2}{c}{Lexical} & \multicolumn{2}{c}{Prosodic}\\
+ & Male & Female & Male & Female & Male & Female & Male & Female\\
+ \hline
+1 & excl & Other LaughAcc & pquan mean & Other tndur SD & syll turn & like & pquan mean & Other prange mean\\
+2 & pronoun & Other hear & Other pmean mean & Other imin SD & probably & syll turn & iquan SD & Other pslnjmp mean\\
+3 & Other achieve & Other youKnow & Other pquan mean & Other iquan mean & Other anx & Other LaughAcc & Other imin SD & imean SD\\
+4 & Other see & kindOf & iquan mean & pquan SD & Other like & Other FuncAcc & imax mean & Other pslope mean\\
+5 & achieve & Other program & Other pslope mean & Other pmean SD & aLittle & sad & Other pmin SD & ptmin SD\\
+6 & Other youKnow & like & Other imin SD & pmean mean & pronoun & Other youKnow & Other imean SD & ptmax SD\\
+7 & Other like & Other iThink & Other prange SD & tndur SD & they & Other friend & imean mean & pquan mean\\
+8 & Other you & syll turn & Other pslnjmp mean & pmean SD & humans & relativ & itmin SD & Other imin mean\\
+9 & shehe & Other see & tndur mean & Other tndur mean & work & posemo & imin mean & imax SD\\
+10 & cogmech & Other affect & imin SD & Other ptmax mean & shehe & Other future & imin SD & imax mean\\
+ \hline
+\end{tabular}
+\caption{\label{table:adaboost} {\it  Gender Based Feature Splits with Highest Weights in Adaboost.}}
+\end{center}
+\label{table:results}
+\end{table*}
+
 \subsubsection{Funny}
 Based on the results for funny, words related the other person using words in the LIWC categories \textit{hear, youKnow, see} and \textit{achieve} are good indicators that the other person finds the speaker funny. The \textit{achieve} category correspond to words like \'win\' that has been expressed by the listener after the speaker delivers a joke. Words corresponding to \textit{hear} and \textit{see} demonstrate that the listener it paying attention and acknowledging the speaker's speech. The 5$^{th}$ feature is laughter accommodation where the listener laughs in reaction to the speaker's laugh.  
 
@@ -216,9 +253,7 @@ Low intensity max mean with small pitch range SD and pitch min SD are important 
 It is interesting to note that the speaker's features are the most important when determining whether the speaker will be perceived as courteous. On the other hand, the listeners features are more important for detecting funny.
 
 \section{Future Work}
-The model we build has a lot of features and reducing dimensionality of this data by learning hidden variables from an sparse auto-encoder (particuarly for the lexical features, as in \cite{ranganath}) might give us more insight into how we can create a shared representation of the lexical with the prosodic features.  In addition, applying simultaneous dimension reduction techniques, such as Canonical Correlations Analysis, across audio, visual and text modes may provide us with interesting insights as to how these media interact. 
-
-We have found here that in general, the evaluator's speech is more informative than the other participant's.  In addition, we have found that, in general, male speech is more informative about males' evaluations of females than female speech is about females' evaluations of men.
+The model we build has a lot of features and reducing dimensionality of this data by learning hidden variables from an sparse auto-encoder might give us more insight into how we can create a shared representation of the lexical with the prosodic features.
 
 The SpeedDate dataset we use also contains ratings of people's intelligence, sincerity and other characteristics. An interesting area to explore would find correlations between these characteristics and their corresponding prosodic and lexical features.
 
@@ -254,16 +289,5 @@ initiation and stability``, in Psychological Science 22 (1), 39, 2011
 \bibitem{lee} Lee, C., Narayanan, S. and Pieraccini, R. ``Combining acoustic and language information for emotion recognition.'' INTERSPEECH. 2002.
 
 \bibitem{ang} Ang, J. , et al. ''Prosody-based automatic detection of annoyance and frustration in human-computer dialog.'' INTERSPEECH. 2002.
-
-\bibitem{men} Menninghaus, W., et al. ''Sounds funny? Humor effects of phonological and prosodic figures of speech.'' Psychology of Aesthetics, Creativity, and the Arts 8.1 (2014): 71.
-
-\bibitem{pur} Purandare, A., and Litman, D. ''Humor: Prosody analysis and automatic recognition for f* r* i* e* n* d* s*.'' Proceedings of the 2006 Conference on Empirical Methods in Natural Language Processing. Association for Computational Linguistics, 2006.
-
-\bibitem{fein} Feinberg, David R., Jones, B. Little, A., D. Michael Burt, and Perrett, D. 2005. ''Manipulations of Fundamental and Formant Frequencies In¿uence the Attractiveness of Human Male Voices.'' Animal Behaviour 69 pp: 561-568.
-
-\bibitem{Mair} Mairesse, F.  et al. ''Using Linguistic Cues for the Automatic Recognition of Personality in Conversation and Text.'' J. Artif. Intell. Res.(JAIR) 30 (2007): 457-500. 
-
-\bibitem{Grav} Gravano, A., et al. ''Acoustic and prosodic correlates of social behavior.'' (2011).
-
 \end{thebibliography}
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.5.15)  26 MAY 2014 16:18
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.5.15)  27 MAY 2014 16:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -167,29 +167,26 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 41.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 56.
-
-<graphics/LargeScree.png, id=1, 497.86pt x 477.785pt>
-File: graphics/LargeScree.png Graphic file (type png)
-
-<use graphics/LargeScree.png>
-Package pdftex.def Info: graphics/LargeScree.png used on input line 63.
-(pdftex.def)             Requested size: 200.0pt x 191.93442pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
 ]
+<graphics/LargeScree.png, id=8, 497.86pt x 477.785pt>
+File: graphics/LargeScree.png Graphic file (type png)
+
+<use graphics/LargeScree.png>
+Package pdftex.def Info: graphics/LargeScree.png used on input line 71.
+(pdftex.def)             Requested size: 200.0pt x 191.93442pt.
+
 <graphics/SelfOther.png, id=9, 366.36874pt x 279.0425pt>
 File: graphics/SelfOther.png Graphic file (type png)
 
 <use graphics/SelfOther.png>
-Package pdftex.def Info: graphics/SelfOther.png used on input line 78.
+Package pdftex.def Info: graphics/SelfOther.png used on input line 86.
 (pdftex.def)             Requested size: 220.0pt x 167.56303pt.
 
-Overfull \hbox (0.91388pt too wide) in paragraph at lines 78--79
+Overfull \hbox (0.91388pt too wide) in paragraph at lines 86--87
  [] 
  []
 
@@ -204,7 +201,7 @@ Missing character: There is no  in font ptmr7t!
 Here is how much of TeX's memory you used:
  1676 strings out of 495028
  23926 string characters out of 6181497
- 81312 words of memory out of 5000000
+ 82312 words of memory out of 5000000
  4861 multiletter control sequences out of 15000+600000
  20502 words of font info for 44 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -213,7 +210,7 @@ Here is how much of TeX's memory you used:
 /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/times/utmri8a.pfb>
-Output written on acl2014.pdf (3 pages, 105236 bytes).
+Output written on acl2014.pdf (3 pages, 106089 bytes).
 PDF statistics:
  29 PDF objects out of 1000 (max. 8388607)
  18 compressed objects within 1 object stream

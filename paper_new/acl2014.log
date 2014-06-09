@@ -184,4 +184,29 @@ LaTeX Warning: File `LargeScree.png' not found on input line 70.
 
 ./acl2014.tex:70: Package pdftex.def Error: File `LargeScree.png' not found.
 
-See the pdftex.def package
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.70 \includegraphics[width=200pt]{LargeScree.png}
+                                                  
+? 
+./acl2014.tex:70: Emergency stop.
+ ...                                              
+                                                  
+l.70 \includegraphics[width=200pt]{LargeScree.png}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+ 
+Here is how much of TeX's memory you used:
+ 1650 strings out of 493488
+ 23955 string characters out of 3141326
+ 81656 words of memory out of 3000000
+ 4948 multiletter control sequences out of 15000+200000
+ 10072 words of font info for 33 fonts, out of 3000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 37i,9n,23p,939b,224s stack positions out of 5000i,500n,10000p,200000b,50000s
+./acl2014.tex:70:  ==> Fatal error occurred, no output PDF file produced!

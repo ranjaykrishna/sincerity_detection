@@ -56,8 +56,16 @@ Prosodic features were extracted using openSMILE.  Lexical features were extract
 \subsection{Sparse PCA}
 Before building any classifier, we must first unveil any underlying structure in our predictor matrix.  We begin with (FILL-IN:\# of inital prosodic features) prosodic features.  Considering that we only have 1493 full data points, we clearly want to reduce the dimesion somehow.  We begin by running a Sparse Principal Component Analysis, as outined in Zou(2006).  This method places an L1-Norm penalty on the loadings vectors in Principal Component Analysis, arriving at a sparse reduction.  As seen in the chart below, most of our non-zero coefficients correspond to MFCC features.  This is worrisome, as this means that most of the variation in our prediction data is attributable to MFCC features, which largely indicate the vowels that our speaker is making.  This is understandable, but ultimately not relevant to our pursuits.  For this reason, we choose to discard the MFCC features for the remainder of our anaysis.
 
+
 \subsection{Factor Analysis}
-Even after removing MFCC features, we have FILL IN NUMBER OF PROSODIC FEATURES per speaker per date.  This is more than we would like to have in order to have easily interpretable results.  As such, we ran a factor analysis on our prosodic predictors, uncovering the following useful latent themes.  We see our first factor corresponds to pitch, the second roughly to intensity, the third to turn duration, the fourth to variation in intensity, and the fifth to variation in pitch. To determine the number of factors to use, we used parallel analysis (Hayton 2004) and a scree plot (shown below) uncovering 5 factors.
+Even after removing MFCC features, we have FILL IN NUMBER OF PROSODIC FEATURES per speaker per date.  This is more than we would like to have in order to have easily interpretable results.  As such, we wanted to run a factor analysis on our prosodic predictors.  It is important to consider that in this data set, much of the variation in the data may be attributable to variation in gender.  As we did not want gender information to be our most important latent factor, we first ran factor analysis separately for the two groups.  We found very similar results for the two separate factor analyses.  The results are shown below.
+
+%TODO: Include FA Graphics
+We see that for both sexes, the first factor largely corresponds to maximum pitch third to min pitch, and fourth to turn duration.  We see differences in the second and fifth factors -- the second factor for males, which largely corresponds to loudness, is the fifth factor for females.  The fifth factor for males, which largely corresponds to variation in loudness, is the second factor for females.  Thus, our latent factors are very similar for the two sexes.  When we pool the two sexes, we again get very similar factor coefficients (shown below).  We will use these factors for prosodic features for the remainder of this paper.
+
+%TODO: Include pooled FA chart 
+
+We ran a factor analysis on our prosodic predictors, uncovering the following useful latent themes.  We see our first factor corresponds to pitch, the second roughly to intensity, the third to turn duration, the fourth to variation in intensity, and the fifth to variation in pitch. To determine the number of factors to use, we used parallel analysis (Hayton 2004) and a scree plot (shown below) uncovering 5 factors.
 
 \begin{center}
 \includegraphics[width=200pt]{LargeScree.png}
