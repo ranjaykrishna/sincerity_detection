@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  9 JUN 2014 11:02
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  9 JUN 2014 11:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -489,14 +489,9 @@ Underfull \vbox (badness 5681) has occurred while \output is active []
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 265.
 
-Underfull \hbox (badness 1231) in paragraph at lines 274--275
+Underfull \hbox (badness 1231) in paragraph at lines 270--271
 []\OT1/ptm/m/n/8 Ranganatha, R., Ju-raf-sky, D., Mc-Far-land, D.A., ``De-tect-i
 ng
- []
-
-
-Underfull \hbox (badness 1062) in paragraph at lines 276--277
-\OT1/ptm/m/n/8 and frus-tra-tion in human-computer di-a-log.'' IN-TER-SPEECH.
  []
 
 Missing character: There is no À in font ptmr7t!
@@ -523,7 +518,7 @@ ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/
 -dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/ur
 w/times/utmri8a.pfb>
-Output written on report.pdf (5 pages, 176040 bytes).
+Output written on report.pdf (5 pages, 176045 bytes).
 PDF statistics:
  55 PDF objects out of 1000 (max. 8388607)
  37 compressed objects within 1 object stream
