@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.5.15)  8 JUN 2014 14:39
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.5.15)  8 JUN 2014 19:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**report.tex
+**report.tex A
 (./report.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 2 languages loaded.
@@ -160,6 +160,15 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 
 LaTeX Warning: Label `scree' multiply defined.
 
+
+LaTeX Warning: Label `table:results' multiply defined.
+
+
+LaTeX Warning: Label `table:results' multiply defined.
+
+
+LaTeX Warning: Label `table:results' multiply defined.
+
 )
 \openout1 = `report.aux'.
 
@@ -266,6 +275,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
+
+LaTeX Warning: Citation `ranganath2' on page 1 undefined on input line 49.
+
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -284,30 +296,49 @@ File: graphics/ScreeMale.png Graphic file (type png)
 <use graphics/ScreeMale.png>
 Package pdftex.def Info: graphics/ScreeMale.png used on input line 78.
 (pdftex.def)             Requested size: 108.12054pt x 101.50427pt.
- [2 <./graphics/ScreeFem.png (PNG copy)> <./graphics/ScreeMale.png (PNG copy)>]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 164.
 
-Underfull \hbox (badness 1231) in paragraph at lines 166--168
+Overfull \hbox (41.18517pt too wide) in paragraph at lines 87--115
+ [] 
+ []
+
+
+Overfull \hbox (27.1815pt too wide) in paragraph at lines 137--161
+ [] 
+ []
+
+[2 <./graphics/ScreeFem.png (PNG copy)> <./graphics/ScreeMale.png (PNG copy)>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 235.
+
+Underfull \hbox (badness 1231) in paragraph at lines 237--239
 []\OT1/ptm/m/n/8 Ranganatha, R., Ju-raf-sky, D., Mc-Far-land, D.A., ``De-tect-i
 ng
  []
 
 Missing character: There is no Ð in font ptmr7t!
 Missing character: There is no Õ in font ptmr7t!
-[3] (./report.aux)
+[4] (./report.aux)
+
+LaTeX Warning: There were undefined references.
+
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2666 strings out of 495028
- 34669 string characters out of 6181497
- 98634 words of memory out of 5000000
- 5815 multiletter control sequences out of 15000+600000
+ 2669 strings out of 495028
+ 34715 string characters out of 6181497
+ 112645 words of memory out of 5000000
+ 5818 multiletter control sequences out of 15000+600000
  24510 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,8n,26p,881b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,8n,26p,883b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/f
@@ -316,10 +347,10 @@ e1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (3 pages, 162634 bytes).
+Output written on report.pdf (4 pages, 166862 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
- 33 compressed objects within 1 object stream
+ 52 PDF objects out of 1000 (max. 8388607)
+ 35 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
