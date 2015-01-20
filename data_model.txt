@@ -1,0 +1,31 @@
+male_id: 101,
+female_id: 121,
+politeness: 
+  {male: 0.76,
+   female: 0.65
+  },
+rating: 
+  {male:
+    {courteous: 8,
+     funny: 7,
+     sincerity: 9
+    },
+   female:
+     {...},
+  },
+politeness_features:
+  {male:
+    [{name: ...,
+      value: ...
+     }, ...],
+   female: [...]
+  },
+male_turns: [...],
+female_turns: [...],
+dependencies: 
+  {male:
+    {parses: [],
+     sentences: [],
+    },
+   female: {...}
+  }
