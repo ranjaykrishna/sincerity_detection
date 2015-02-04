@@ -20,6 +20,12 @@ politeness_features:
      }, ...],
    female: [...]
   },
+lexical_features:
+  {'male': 
+    [{name: ...,
+      value: ...
+     }, ...],
+   'female': ...}
 male_turns: [...],
 female_turns: [...],
 dependencies: 
