@@ -7,6 +7,16 @@ def get_collection():
   collection = db.conversations
   return collection
 
+def get_lexical_features(query, gender):
+  collection = get_collection()
+  doc = collection.find(query)[:1]
+  if doc.count() == 0:
+   return None
+  doc = doc[0]
+  features = doc['lexical_features'][gender].values()
+  return features
+
+
 def get_politeness_features(query, feature_names, gender):
   collection = get_collection()
   doc = collection.find(query)[:1]

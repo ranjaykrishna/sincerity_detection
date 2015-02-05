@@ -35,12 +35,14 @@ def build_features(gender):
   X = []
   y = []
   for id in top_male_ids:
-    features = utils.get_politeness_features(id, politeness_feature_names, gender)
-    X.append(features)
+    politeness_features = []#utils.get_politeness_features(id, politeness_feature_names, gender)
+    lexical_features = utils.get_lexical_features(id, gender)
+    X.append(politeness_features+lexical_features)
     y.append(1)
   for id in bottom_male_ids:
-    features = utils.get_politeness_features(id, politeness_feature_names, gender)
-    X.append(features)
+    politeness_features = []#utils.get_politeness_features(id, politeness_feature_names, gender)
+    lexical_features = utils.get_lexical_features(id, gender)
+    X.append(politeness_features+lexical_features)
     y.append(0)
   return np.array(X), np.array(y)
 
@@ -48,9 +50,10 @@ def train(X, y):
   X_train, X_test, y_train, y_test = cross_validation.train_test_split(
     X, y, test_size=0.1, random_state=0)
   clf = svm.SVC(kernel='linear', C=1).fit(X_train, y_train)
+  print clf.support_vectors_.shape
   print clf.score(X_test, y_test)
 
-X, y = build_features('male')
-train(X, y)
+#X, y = build_features('male')
+#train(X, y)
 X, y = build_features('female')
 train(X, y)
